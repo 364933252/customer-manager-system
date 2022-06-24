@@ -1,26 +1,65 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
+// 获取原型对象的push函数
+const RouterPush = VueRouter.prototype.push
+// 修改 原型对象中的push方法
+VueRouter.prototype.push = function push(to) {
+  return RouterPush.call(this, to).catch(err => err)
+}
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/login'
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('../views/CommonPage/404')
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    redirect: '/welcome',
+    component: () => import('../views/Home.vue'),
+    children: [
+      {
+        path: '/welcome',
+        name: 'welcome',
+        component: () => import('../views/Welcome.vue')
+      },
+      {
+        path: '/homePage',
+        name: 'homePage',
+        component: () => import('../views/HomePage')
+      },
+      {
+        path: '/clueList',
+        name: 'clueList',
+        component: () => import('../views/CustomerManage/clue/clueList')
+      },
+      {
+        path: '/customerList',
+        name: 'customerList',
+        component: () => import('../views/CustomerManage/customer/customerList')
+      }
+    ]
+  },
+  {
+    path: '*',
+    redirect: '/404'
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
