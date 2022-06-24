@@ -4,8 +4,11 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import '../src/assets/css/global.css'
+import ContextMenuJs from 'vue-contextmenujs'
 
 Vue.config.productionTip = false
+
+Vue.use(ContextMenuJs)
 
 new Vue({
   router,
