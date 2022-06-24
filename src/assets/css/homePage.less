@@ -1,0 +1,134 @@
+.home_page_top {
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-wrap: nowrap;
+    // justify-content: center;
+    align-items: center;
+
+    .home_page_item0,
+    .home_page_item1,
+    .home_page_item2,
+    .home_page_item3,
+    .home_page_item4 {
+        display: flex;
+        justify-content: space-between;
+        background: rgb(15, 59, 128);
+        align-items: center;
+        padding: 0 15px;
+        margin: 0 5px;
+        width: 20%;
+        height: 100px;
+
+        .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .item_child {
+                text-align: center;
+                color: #fff;
+            }
+
+            img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    }
+
+    .home_page_item0:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .6), 0 0 6px rgba(0, 0, 0, .4);
+    }
+
+    .home_page_item1:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .6), 0 0 6px rgba(0, 0, 0, .4);
+    }
+
+    .home_page_item2:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .6), 0 0 6px rgba(0, 0, 0, .4);
+    }
+
+    .home_page_item3:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .6), 0 0 6px rgba(0, 0, 0, .4);
+    }
+
+    .home_page_item4:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .6), 0 0 6px rgba(0, 0, 0, .4);
+    }
+
+    .home_page_item1 {
+        background: rgb(106, 164, 254);
+    }
+
+    .home_page_item2 {
+        background: rgb(54, 83, 128);
+    }
+
+    .home_page_item3 {
+        background: rgb(24, 93, 204);
+    }
+
+    .home_page_item4 {
+        background: rgb(29, 116, 255);
+    }
+}
+
+.scroll_bar {
+    width: 100%;
+    height: 240px;
+    overflow: auto;
+    // 滚动条整体部分
+    &::-webkit-scrollbar {
+        width: 6px; //对垂直方向滚动条
+        height: 6px; //对水平方向滚动条
+    }
+
+    //滚动的滑块
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: #C7E8FF //滚动条的颜色
+    }
+
+    //内层滚动槽
+    &::-webkit-scrollbar-track-piece {
+        background-color: rgba(224, 223, 223, 0.959);
+    }
+}
+
+// .home_page_main {
+//     padding: 10px 5px 0 5px;
+
+//     .page_main_item,
+//     .page_main_item1 {
+//         display: flex;
+//         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+//         .main_item_left,
+//         .main_item_right,
+//         .main_item1_left,
+//         .main_item1_right {
+//             padding: 15px;
+//             background: rgb(255, 255, 255);
+//         }
+
+//         .main_item_left {
+//             flex: 4;
+//             margin: 0 5px 5px 0;
+//         }
+
+//         .main_item_right {
+//             flex: 3;
+//             margin: 0 0 5px 5px;
+//         }
+
+//         .main_item1_left {
+//             flex: 3;
+//             margin: 5px 5px 0 0;
+//         }
+
+//         .main_item1_right {
+//             flex: 4;
+//             margin: 5px 0 0 5px;
+//         }
+//     }
+// }
