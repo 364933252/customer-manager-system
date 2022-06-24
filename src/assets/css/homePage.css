@@ -90,6 +90,9 @@
   height: 210px;
   overflow: auto;
 }
+.msg_box .scroll_bar .el-card__body {
+  padding: 10px;
+}
 .msg_box .scroll_bar::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -100,4 +103,30 @@
 }
 .msg_box .scroll_bar::-webkit-scrollbar-track-piece {
   background-color: rgba(224, 223, 223, 0.959);
+}
+.msg_box .scroll_bar .msg_info_box {
+  padding: 0 5px;
+}
+.msg_box .scroll_bar .msg_info_box .info_name_box {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+  font-size: 14px;
+}
+.msg_box .scroll_bar .msg_info_box .info_name_box .name_box {
+  font-weight: 600;
+}
+.msg_box .scroll_bar .msg_info_box .info_name_box .time_box {
+  color: #9BA0AA;
+}
+.msg_box .scroll_bar .msg_info_box .info_title_box {
+  padding: 5px 0;
+  font-size: 12px;
+}
+.msg_box .scroll_bar .msg_info_box .info_content_box {
+  font-size: 12px;
+  width: 510px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

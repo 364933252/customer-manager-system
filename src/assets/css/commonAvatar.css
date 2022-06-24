@@ -1,0 +1,9 @@
+.avatar_box {
+  display: flex;
+  justify-content: center;
+}
+.avatar_box .avatar {
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+}
