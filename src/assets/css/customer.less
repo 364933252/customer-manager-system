@@ -1,0 +1,194 @@
+.customer_info_box {
+    color: #fff;
+
+    .description_content {
+        // border: 1px solid #000;
+        width: 50%;
+    }
+
+    .el-descriptions {
+        padding: 5px 0;
+    }
+
+    .el-descriptions-item__container {
+        justify-content: space-between;
+        padding: 5px 0;
+    }
+
+    .el-descriptions__body {
+        background: rgb(29, 116, 255);
+        color: #fff;
+        padding: 30px;
+    }
+
+    // .el-descriptions__header {
+    //     background: rgba(255, 255, 255);
+    // }
+    .el-descriptions-item__content {
+        flex: none;
+    }
+
+    .label_box {
+        display: flex;
+        align-items: center;
+
+        .i_cls {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    }
+}
+
+.el-card__header {
+    padding: 10px 20px 10px 10px;
+}
+
+
+.customer_portrait_box {
+    padding: 5px;
+
+    .customer_portrait_title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .cusetomer_portrait_content_box {
+        border: 1px dashed #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 85px 0;
+
+        .portrait_content_bg {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background: url('../images/portrait_bg.png') no-repeat top center;
+            background-size: 100% 100%;
+
+            .portrait_box,
+            .portrait_box1 {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 150px;
+                height: 320px;
+                text-align: center;
+                display: flex;
+                flex-flow: column;
+                justify-content: space-between;
+
+                .portrait,
+                .portrait1,
+                .portrait2 {
+                    padding: 10px 10px;
+                    border-radius: 25px;
+                    color: #fff;
+                    font-size: 12px;
+                    background: rgba(100, 151, 255);
+                    box-shadow: 0 20px 10px rgba(100, 151, 255, .4);
+                }
+            }
+
+            .portrait_box1 {
+                width: 480px;
+                height: 150px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-flow: row;
+
+                .portrait_item_box {
+                    width: 200px;
+
+                    .portrait1 {
+                        width: 150px;
+                        margin: 45px 0;
+                        box-sizing: border-box;
+                    }
+
+                    .portrait1:nth-child(1) {
+                        margin-left: 45px;
+                    }
+
+                    .portrait1:nth-child(2) {
+                        margin-left: 15px;
+                    }
+
+                    .portrait1:nth-child(3) {
+                        margin-left: 45px;
+                    }
+                }
+
+                .portrait_item_box1 {
+                    width: 200px;
+
+                    .portrait1 {
+                        width: 150px;
+                        margin: 45px 0;
+                        box-sizing: border-box;
+                    }
+
+                    .portrait1:nth-child(2) {
+                        margin-left: 35px;
+                    }
+                }
+            }
+
+            .portrait_content_item,
+            .portrait_content_item1 {
+                width: 160px;
+                height: 160px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                background: url('../images/portrait_right_bg.png') no-repeat top center;
+                background-size: 100% 100%;
+                animation: rotate1 10s linear infinite;
+            }
+
+            .portrait_content_item1 {
+                background: url('../images/portrait_bottom_bg.png') no-repeat top center;
+                width: 120px;
+                height: 120px;
+                background-size: 100% 100%;
+                animation: rotate2 5s linear infinite;
+            }
+
+            .portrait_content_item2 {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 100px;
+                height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            @keyframes rotate1 {
+                from {
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+
+                to {
+                    transform: translate(-50%, -50%) rotate(360deg);
+                }
+            }
+
+            @keyframes rotate2 {
+                from {
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+
+                to {
+                    transform: translate(-50%, -50%) rotate(-360deg);
+                }
+            }
+        }
+    }
+}

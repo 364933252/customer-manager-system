@@ -1,6 +1,7 @@
 export default {
     state: {
         isCollapse: false,
+        tabName: 'homePage',
         tabsList: [
             {
                 path: '/homePage',
@@ -43,6 +44,11 @@ export default {
         // 控制左侧菜单是否展开
         isCollapse: function(state) {
             state.isCollapse = !state.isCollapse
+        },
+        // 修改标签页默认选中
+        editTabsSelected: function (state, step) {
+            console.log('12313', step)
+            state.tabName = step
         },
         // 控制tags及面包屑数据
         selectMenu: function (state, step) {

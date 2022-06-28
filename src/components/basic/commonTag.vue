@@ -10,7 +10,7 @@
       @close="handleClose(tag, index)"
       >{{ tag.label }}</el-tag
     > -->
-    <el-tabs v-model="tabName" @tab-click="clickTab" @tab-remove="removeTab">
+    <el-tabs :value="tabName" @tab-click="clickTab" @tab-remove="removeTab">
       <el-tab-pane
         v-for="(tab, index) in tabsList"
         :key="tab.path"
@@ -28,21 +28,25 @@ export default {
   name: 'commonTag',
   data() {
     return {
-      tabName: 'homePage'
+      tabsName: 'homePage'
     };
   },
   computed: {
     ...mapState({
-      tabsList: (state) => state.tabs.tabsList
+      tabsList: (state) => state.tabs.tabsList,
+      tabName: (state) => state.tabs.tabName
     })
   },
   methods: {
     ...mapMutations({
-      close: 'closeTag'
+      close: 'closeTag',
+      editTabs: 'editTabsSelected'
     }),
     // 点击tab
     clickTab: function (tab) {
       this.$router.push({ name: tab.name });
+      this.editTabs(tab.name)
+      this.tabsName = this.tabName
     },
     // 删除tab
     removeTab: function (tab) {
@@ -61,11 +65,16 @@ export default {
         this.$router.push({
           name: this.tabsList[index - 1].name
         });
-        this.tabName = this.tabsList[index - 1].name
+        // this.tabName = this.tabsList[index - 1].name
+        this.editTabs(this.tabsList[index - 1].name)
+        this.tabsName = this.tabName
       } else {
         this.$router.push({
           name: this.tabsList[index].name
         });
+        // this.tabName = this.tabsList[index].name
+        this.editTabs(this.tabsList[index].name)
+        this.tabsName = this.tabName
         console.log(index)
       }
     },

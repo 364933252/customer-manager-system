@@ -6,6 +6,7 @@
       @open="handleOpen"
       @close="handleClose"
       :collapse="isCollapse"
+      active-text-color="#fff"
     >
         <h3 style="text-align: center;">{{isCollapse ? '墨辰' : '墨辰CRM系统'}}</h3>
       <el-menu-item
@@ -82,7 +83,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-        selectMenu: 'selectMenu'
+        selectMenu: 'selectMenu',
+        editTabs: 'editTabsSelected'
     }),
     clickMenu: function (menu) {
       console.log(menu);
@@ -90,6 +92,7 @@ export default {
         name: menu.name
       });
       this.selectMenu(menu)
+      this.editTabs(menu.name)
     },
     handleOpen(key, keyPath) {
       console.log(key, keyPath);

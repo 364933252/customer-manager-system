@@ -49,6 +49,11 @@ const routes = [
         path: '/customerList',
         name: 'customerList',
         component: () => import('../views/CustomerManage/customer/customerList')
+      },
+      {
+        path: '/customerDetail',
+        name: 'customerDetail',
+        component: () => import('../views/CustomerManage/customer/customerDetail')
       }
     ]
   },
@@ -57,6 +62,7 @@ const routes = [
     redirect: '/404'
   }
 ]
+
 
 const router = new VueRouter({
   mode: 'history',
