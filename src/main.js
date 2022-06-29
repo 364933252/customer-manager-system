@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import '../src/assets/css/global.css'
+import '../src/assets/iconfont/iconfont.css'
 import Contextmenu from "vue-contextmenujs"
 
 Vue.config.productionTip = false

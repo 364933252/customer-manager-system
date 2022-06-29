@@ -23,7 +23,7 @@
       </el-row>
       <el-table
         :data="clueTableData"
-        :height="windowHeight - 80 + 'px'"
+        :height="windowHeight - 20 + 'px'"
         :header-row-class-name="setTableHeaderClass"
         stripe
         highlight-current-row

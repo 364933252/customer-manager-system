@@ -37,6 +37,38 @@ export default {
                         name: 'customerList'
                     }
                 ]
+            },
+            {
+                path: '/memberManage',
+                label: '会员管理',
+                name: 'memberManage',
+                icon: 's-custom',
+                children: [
+                    {
+                        path: '/memberList',
+                        label: '会员列表',
+                        icon: 's-custom',
+                        name: 'memberList'
+                    },
+                    {
+                        path: '/memberTypeList',
+                        label: '会员类型管理',
+                        icon: 's-custom',
+                        name: 'memberTypeList'
+                    },
+                    {
+                        path: '/memberLevelList',
+                        label: '会员等级管理',
+                        icon: 's-custom',
+                        name: 'memberLevelList'
+                    },
+                    {
+                        path: '/memberDayManage',
+                        label: '纪念日管理',
+                        icon: 's-custom',
+                        name: 'memberDayManage'
+                    }
+                ]
             }
         ]
     },

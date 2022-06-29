@@ -23,7 +23,7 @@
       </el-row>
       <el-table
         :data="clueTableData"
-        :height="windowHeight - 80 + 'px'"
+        :height="windowHeight - 20 + 'px'"
         :header-row-class-name="setTableHeaderClass"
         stripe
         highlight-current-row
@@ -72,6 +72,15 @@
                 icon="el-icon-search"
                 size="mini"
                 @click="checkCustomerDetail(row)"
+              ></el-button>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="转为会员" placement="top">
+              <el-button
+                type="warning"
+                circle
+                icon="el-icon-medal"
+                size="mini"
+                @click="transferMember(row)"
               ></el-button>
             </el-tooltip>
           </template>
@@ -352,6 +361,10 @@ export default {
           customObj: row
         }
       })
+    },
+    // 转为会员
+    transferMember: function () {
+      console.log('转为会员');
     }
   }
 };

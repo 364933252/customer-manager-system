@@ -54,6 +54,26 @@ const routes = [
         path: '/customerDetail',
         name: 'customerDetail',
         component: () => import('../views/CustomerManage/customer/customerDetail')
+      },
+      {
+        path: '/memberList',
+        name: 'memberList',
+        component: () => import('../views/memberManage/memberList')
+      },
+      {
+        path: '/memberTypeList',
+        name: 'memberTypeList',
+        component: () => import('../views/memberManage/memberTypeList')
+      },
+      {
+        path: '/memberLevelList',
+        name: 'memberLevelList',
+        component: () => import('../views/memberManage/memberLevelList')
+      },
+      {
+        path: '/memberDayManage',
+        name: 'memberDayManage',
+        component: () => import('../views/memberManage/memberDayManage')
       }
     ]
   },
