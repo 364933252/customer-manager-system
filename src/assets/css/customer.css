@@ -1,8 +1,14 @@
+.header_box .header_btns {
+  margin-left: 10px;
+}
 .customer_info_box {
   color: #fff;
 }
 .customer_info_box .description_content {
   width: 50%;
+}
+.customer_info_box .el-button {
+  padding: 0;
 }
 .customer_info_box .el-descriptions {
   padding: 5px 0;

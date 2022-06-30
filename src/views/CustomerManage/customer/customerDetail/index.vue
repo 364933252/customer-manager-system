@@ -4,8 +4,22 @@
       <div slot="header">
         <span>客户详情</span>
         <el-button
+          style="margin-left: 10px"
+          circle
+          plain
+          size="mini"
+          icon="el-icon-arrow-left"
+          @click="previous"
+        ></el-button>
+        <el-button
+          circle
+          plain
+          size="mini"
+          icon="el-icon-arrow-right"
+          @click="next"
+        ></el-button>
+        <el-button
           style="float: right"
-          type="primary"
           size="mini"
           plain
           icon="el-icon-arrow-left"
@@ -25,9 +39,15 @@
               contentClassName="description_content"
             >
               <template slot="extra">
-                <!-- <el-button
-                  type="text"
-                >操作</el-button> -->
+                <el-dropdown>
+                  <span class="el-dropdown-link">
+                    <i class="el-icon-more"></i>
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>修改</el-dropdown-item>
+                    <el-dropdown-item>转为会员</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
               </template>
               <el-descriptions-item label="用户名">
                 <template slot="label">
@@ -36,7 +56,7 @@
                     <span>姓名</span>
                   </div>
                 </template>
-                萧楚河
+                {{ customer.name }}
               </el-descriptions-item>
               <el-descriptions-item label="用户名">
                 <template slot="label">
@@ -45,7 +65,7 @@
                     <span>性别</span>
                   </div>
                 </template>
-                男
+                {{ customer.gender }}
               </el-descriptions-item>
               <el-descriptions-item label="用户名">
                 <template slot="label">
@@ -54,7 +74,7 @@
                     <span>手机号</span>
                   </div>
                 </template>
-                15689360191
+                {{ customer.mobile }}
               </el-descriptions-item>
               <el-descriptions-item label="用户名">
                 <template slot="label">
@@ -63,7 +83,7 @@
                     <span>生日</span>
                   </div>
                 </template>
-                2000-12-22
+                {{ customer.birthday }}
               </el-descriptions-item>
               <el-descriptions-item label="用户名">
                 <template slot="label">
@@ -72,7 +92,8 @@
                     <span>是否会员</span>
                   </div>
                 </template>
-                是
+                <span v-if="customer.isMember === 1">是</span>
+                <span v-if="customer.isMember === 0">否</span>
               </el-descriptions-item>
               <el-descriptions-item label="用户名">
                 <template slot="label">
@@ -81,7 +102,7 @@
                     <span>微信号</span>
                   </div>
                 </template>
-                15689360191
+                {{ customer.wechat }}
               </el-descriptions-item>
               <el-descriptions-item label="用户名">
                 <template slot="label">
@@ -90,7 +111,7 @@
                     <span>创建时间</span>
                   </div>
                 </template>
-                2022-12-20 12:00-00
+                {{ customer.date }}
               </el-descriptions-item>
             </el-descriptions>
           </div>
@@ -129,7 +150,7 @@
       <el-tabs>
         <el-tab-pane label="地址信息">
           <el-table
-            :data="tableData"
+            :data="customer.contactAddr"
             style="width: 100%"
             :header-row-class-name="setTableHeaderClass"
             height="210px"
@@ -144,12 +165,17 @@
                   </div>
                   <div class="addr_right_box">
                     <div class="addr_right">
-                      <span>{{row.name}}</span>
-                      <span>{{row.phone}}</span>
+                      <span>{{ row.name }}</span>
+                      <span>{{ row.mobile }}</span>
                     </div>
                     <div class="addr_right">
-                      <el-tag type="success" size="mini" v-if="row.isDefault === 1">默认地址</el-tag>
-                      <span>{{row.addr}}</span>
+                      <el-tag
+                        type="success"
+                        size="mini"
+                        v-if="row.isDefault === 1"
+                        >默认地址</el-tag
+                      >
+                      <span>{{ row.addr }}</span>
                     </div>
                   </div>
                 </div>
@@ -170,7 +196,7 @@
             >
             </el-table-column>
             <el-table-column
-              prop="lastTime"
+              prop="lastUseTime"
               label="最近使用时间"
               width="160"
               align="center"
@@ -182,7 +208,9 @@
                 <span style="margin: 0 5px">|</span>
                 <el-button type="text">修改</el-button>
                 <span style="margin: 0 5px" v-if="row.isDefault === 2">|</span>
-                <el-button type="text" v-if="row.isDefault === 2">设为默认地址</el-button>
+                <el-button type="text" v-if="row.isDefault === 2"
+                  >设为默认地址</el-button
+                >
               </template>
             </el-table-column>
           </el-table>
@@ -196,7 +224,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import commonAvatar from '@/components/common/commonAvatar'
+import commonAvatar from '@/components/common/commonAvatar';
 export default {
   components: {
     commonAvatar
@@ -204,73 +232,48 @@ export default {
   data() {
     return {
       circleUrl: require('@/assets/images/1.png'),
-      tableData: [
-        {
-          name: '雷无桀',
-          phone: '15689360191',
-          addr: '山东省枣庄市滕州市学院中路50号山东墨辰信息科技有限公司',
-          addrType: '公司',
-          useTime: 12,
-          lastTime: '2022-06-26',
-          isDefault: 1
-        },
-        {
-          name: '司空长风',
-          phone: '15689360192',
-          addr: '山东省枣庄市滕州市学院中路50号昊洋大厦',
-          addrType: '家',
-          useTime: 12,
-          lastTime: '2022-06-26',
-          isDefault: 2
-        },
-        {
-          name: '唐三',
-          phone: '15689360193',
-          addr: '山东省枣庄市滕州市学院中路50号山东墨辰信息科技有限公司',
-          addrType: '公司',
-          useTime: 12,
-          lastTime: '2022-06-26',
-          isDefault: 2
-        },
-        {
-          name: '无心',
-          phone: '15689360194',
-          addr: '山东省枣庄市滕州市学院中路50号昊洋大厦',
-          addrType: '家',
-          useTime: 12,
-          lastTime: '2022-06-26',
-          isDefault: 2
-        },
-        {
-          name: '张无忌',
-          phone: '15689360195',
-          addr: '山东省枣庄市滕州市学院中路50号山东墨辰信息科技有限公司',
-          addrType: '公司',
-          useTime: 12,
-          lastTime: '2022-06-26',
-          isDefault: 2
-        },
-        {
-          name: '赵敏',
-          phone: '15689360196',
-          addr: '山东省枣庄市滕州市学院中路50号昊洋大厦',
-          addrType: '家',
-          useTime: 12,
-          lastTime: '2022-06-26',
-          isDefault: 2
-        }
-      ]
+      customer: {},
+      index: null
     };
   },
   computed: {
     ...mapState({
-      windowHeight: (state) => state.common.tableHeight
+      windowHeight: (state) => state.common.tableHeight,
+      customerTableData: (state) => state.common.customerTableData
     })
   },
   created() {
-    console.log(this.widowHieght);
+    // console.log(this.$route, '132');
+    this.getCustomerDetail();
+    this.initCustomerList();
   },
   methods: {
+    // 获取客户详情
+    getCustomerDetail: function () {
+      this.customer = this.$route.params.customObj;
+    },
+    // 初始化数据
+    initCustomerList: function () {
+      this.customerTableData.filter((item, index) => {
+        if (item.id === this.customer.id) {
+          this.index = index;
+        }
+      });
+      console.log(this.index, 'index');
+    },
+    // 上一个
+    previous: function () {
+      this.index -= 1;
+      if (this.index < 0) return this.$message.info('已经是第一条~');
+      this.customer = this.customerTableData[this.index];
+    },
+    // 下一个
+    next: function () {
+      this.index += 1;
+      if (this.index > this.customerTableData.length - 1)
+        return this.$message.info('已经是最后一条~');
+      this.customer = this.customerTableData[this.index];
+    },
     // 设置表格表头颜色
     setTableHeaderClass: function ({ row, column, rowIndex }) {
       if (rowIndex === 0) {

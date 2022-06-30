@@ -21,7 +21,7 @@ export default {
   },
   mounted() {
     this.getTableHeight();
-    console.log(sessionStorage.getItem('store'), '13');
+    // console.log(sessionStorage.getItem('store'), '13');
   },
   watch: {
     // 监听可视区域高度变化，并赋值给需要自适应高度的组件高度变量
@@ -35,7 +35,7 @@ export default {
     },
     $route: {
       handler: function (newVal, oldVal) {
-        console.log(newVal, oldVal);
+        // console.log(newVal, oldVal);
         this.editTabsSelected(newVal.name);
       },
       immediate: true,
@@ -54,7 +54,7 @@ export default {
           document.documentElement.clientHeight || document.bodyclientHeight;
       };
       // const tableHeight = height - 190
-      console.log(this.clientHeight, '132');
+      // console.log(this.clientHeight, '132');
     },
     // 点击浏览器物理前进后退按钮时tabs变化
     editTabsSelected: function (name) {

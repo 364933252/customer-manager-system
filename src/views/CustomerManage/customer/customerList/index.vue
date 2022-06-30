@@ -22,7 +22,7 @@
         </el-col>
       </el-row>
       <el-table
-        :data="clueTableData"
+        :data="customerTableData"
         :height="windowHeight - 20 + 'px'"
         :header-row-class-name="setTableHeaderClass"
         stripe
@@ -40,7 +40,7 @@
           label="手机号"
           width="120"
         ></el-table-column>
-        <el-table-column prop="purpose" label="意向等级" width="200">
+        <el-table-column prop="purpose" label="客户满意度" width="200">
           <template slot-scope="{ row }">
             <el-rate
               v-model="row.purpose"
@@ -63,7 +63,7 @@
         </el-table-column>
         <el-table-column prop="date" label="日期" width="120">
         </el-table-column>
-        <el-table-column>
+        <el-table-column width="140">
           <template slot-scope="{ row }">
             <el-tooltip effect="dark" content="查看客户详情" placement="top">
               <el-button
@@ -79,6 +79,15 @@
                 type="warning"
                 circle
                 icon="el-icon-medal"
+                size="mini"
+                @click="transferMember(row)"
+              ></el-button>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="删除" placement="top">
+              <el-button
+                type="danger"
+                circle
+                icon="el-icon-delete"
                 size="mini"
                 @click="transferMember(row)"
               ></el-button>
@@ -113,188 +122,22 @@ export default {
         search: '',
         current: 1,
         size: 10
-      },
-      clueTableData: [
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 5,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 3,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 1,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 0,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 2,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 5,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 4,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 3,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 4,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 4,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 3,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 4,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 4,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 3,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        },
-        {
-          name: '李先生',
-          gender: '男',
-          mobile: '15689360191',
-          purpose: 4,
-          budget: '50000',
-          style: '后现代简约风',
-          addr: '山东省枣庄市滕州市龙泉湾36号楼1101',
-          source: '广告',
-          date: '2022-06-25'
-        }
-      ],
+      }
     };
   },
   computed: {
     ...mapState({
-      windowHeight: (state) => state.common.tableHeight
+      windowHeight: (state) => state.common.tableHeight,
+      customerTableData: state => state.common.customerTableData
     })
   },
   created() {},
   methods: {
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      // console.log(`每页 ${val} 条`);
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      // console.log(`当前页: ${val}`);
     },
     // 设置表格表头颜色
     setTableHeaderClass: function ({ row, column, rowIndex }) {
