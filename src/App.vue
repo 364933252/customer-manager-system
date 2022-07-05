@@ -73,10 +73,7 @@ export default {
         );
       }
       window.addEventListener('beforeunload', () => {
-        sessionStorage.setItem(
-          'store',
-          JSON.stringify(this.$store.state)
-        );
+        sessionStorage.setItem('store', JSON.stringify(this.$store.state));
       });
     }
   }
