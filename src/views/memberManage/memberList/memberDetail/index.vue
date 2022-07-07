@@ -104,6 +104,7 @@
                 <el-table
                   :data="expenseCalenderData"
                   border
+                  stripe
                   style="width: 100%"
                   :height="windowHeight - 205 + 'px'"
                 >
@@ -189,6 +190,7 @@
                 <el-table
                   :data="expenseCalenderData"
                   border
+                  stripe
                   style="width: 100%"
                   :height="windowHeight - 205 + 'px'"
                 >
