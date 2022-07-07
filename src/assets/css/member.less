@@ -2,46 +2,58 @@
     background-color: #fff;
     padding: 5px;
 }
+
 .member_data_box {
     display: flex;
     justify-content: space-between;
+
     .member_data_item {
         font-size: 14px;
+
         .data {
             font-size: 26px;
             font-weight: bold;
             padding: 10px 0;
         }
+
         .data_item_title1,
         .num {
             color: #A5A7A9;
         }
+
         .data_item_type {
             display: flex;
             align-items: center;
+
             .item_type {
                 text-align: center;
                 color: #A5A7A9;
             }
+
             .item_type:nth-child(2) {
                 margin: 0 20px;
             }
         }
+
         .data_item_btn {
             color: #347BE7;
             text-align: right;
             height: 16px;
         }
+
         .data_item_btn2 {
             color: #347BE7;
             padding-top: 16px;
         }
+
         .data_item_btn2:active {
             color: #2F6FCF;
         }
+
         .data_item_btn:active {
             color: #2F6FCF;
         }
+
         .data_item_bg,
         .data_item_bg1,
         .data_item_bg2,
@@ -51,17 +63,80 @@
             background: url('../images/member_bg\ \(2\).png') no-repeat top center;
             background-size: 100% 100%;
         }
+
         .data_item_bg1 {
             background: url('../images/member_bg\ \(4\).png') no-repeat top center;
             background-size: 100% 100%;
         }
+
         .data_item_bg2 {
             background: url('../images//member_bg\ \(1\).png') no-repeat top center;
             background-size: 100% 100%;
         }
+
         .data_item_bg3 {
             background: url('../images//member_bg\ \(3\).png') no-repeat top center;
             background-size: 100% 100%;
+        }
+    }
+}
+
+.member_detail_header {
+    margin: 5px;
+}
+
+.el-icon-user {
+    color: #456FE1;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.el-card__header {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.icon_cls {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.member_detail_item {
+    // display: flex;
+    // flex-flow: column;
+    // justify-content: space-between;
+    // // padding: 20px 0;
+    // box-sizing: border-box;
+    // height: 96%;
+    .el-card {
+        margin: 10px 0;
+    }
+    .member_info_box {
+        padding: 0 10px;
+
+        .member_info_item {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 15px;
+            font-size: 14px;
+
+            .info_item_left {
+                flex: 2;
+                display: inline-block;
+                text-align: justify;
+                margin-right: 10px;
+                font-weight: bold;
+
+                &::after {
+                    content: '';
+                    display: inline-block;
+                    width: 100%;
+                }
+            }
+
+            .info_item_right {
+                flex: 5;
+            }
         }
     }
 }

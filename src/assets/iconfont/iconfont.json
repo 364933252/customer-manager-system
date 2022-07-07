@@ -6,6 +6,90 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "577355",
+      "name": "筛选",
+      "font_class": "shaixuan",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "1167179",
+      "name": "筛选",
+      "font_class": "shaixuan1",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "9974770",
+      "name": "筛选",
+      "font_class": "shaixuan2",
+      "unicode": "e714",
+      "unicode_decimal": 59156
+    },
+    {
+      "icon_id": "1221530",
+      "name": "积分金币",
+      "font_class": "coins",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "5922113",
+      "name": "授信详情-消费记录",
+      "font_class": "shouxinxiangqing-xiaofeijilu",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "7081026",
+      "name": "我的积分",
+      "font_class": "credit1",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "12797030",
+      "name": "积分明细",
+      "font_class": "jifenmingxi",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "20804696",
+      "name": "菜单栏-商城-充值&消费",
+      "font_class": "caidanlan-shangcheng-chongzhixiaofei",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "586758",
+      "name": "客户管理",
+      "font_class": "weibiaoti2",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "982336",
+      "name": "会员",
+      "font_class": "huiyuan",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "1330847",
+      "name": "暂无充值记录",
+      "font_class": "zanwuchongzhijilu",
+      "unicode": "e766",
+      "unicode_decimal": 59238
+    },
+    {
+      "icon_id": "9749392",
+      "name": "生日提醒",
+      "font_class": "birthday-reminder",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
       "icon_id": "451572",
       "name": "售后",
       "font_class": "shouhou",

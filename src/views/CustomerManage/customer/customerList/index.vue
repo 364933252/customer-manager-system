@@ -200,8 +200,8 @@ export default {
     checkCustomerDetail: function (row) {
       this.$router.push({
         name: 'customerDetail',
-        params: {
-          customObj: row
+        query: {
+          customObj: JSON.stringify(row)
         }
       })
     },

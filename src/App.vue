@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       clientHeight: `${
-        document.documentElement.clientHeight || document.bodyclientHeight
+        document.documentElement.clientHeight || document.body.clientHeight || window.innerHeight
       }`
     };
   },

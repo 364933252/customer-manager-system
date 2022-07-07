@@ -214,8 +214,8 @@ export default {
     checkMember: function (member) {
       this.$router.push({
         name: 'memberDetail',
-        params: {
-          member: member
+        query: {
+          member: JSON.stringify(member)
         }
       })
     }

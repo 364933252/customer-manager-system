@@ -65,3 +65,46 @@
   background: url('../images//member_bg\ \(3\).png') no-repeat top center;
   background-size: 100% 100%;
 }
+.member_detail_header {
+  margin: 5px;
+}
+.el-icon-user {
+  color: #456FE1;
+  font-weight: bold;
+  margin-right: 5px;
+}
+.el-card__header {
+  padding: 10px;
+  font-weight: bold;
+}
+.icon_cls {
+  font-size: 18px;
+  margin-right: 5px;
+}
+.member_detail_item .el-card {
+  margin: 10px 0;
+}
+.member_detail_item .member_info_box {
+  padding: 0 10px;
+}
+.member_detail_item .member_info_box .member_info_item {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+.member_detail_item .member_info_box .member_info_item .info_item_left {
+  flex: 2;
+  display: inline-block;
+  text-align: justify;
+  margin-right: 10px;
+  font-weight: bold;
+}
+.member_detail_item .member_info_box .member_info_item .info_item_left::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+}
+.member_detail_item .member_info_box .member_info_item .info_item_right {
+  flex: 5;
+}

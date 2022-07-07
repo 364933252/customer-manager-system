@@ -243,14 +243,14 @@ export default {
     })
   },
   created() {
-    // console.log(this.$route, '132');
+    console.log(this.$route.query.customObj, '132');
     this.getCustomerDetail();
     this.initCustomerList();
   },
   methods: {
     // 获取客户详情
     getCustomerDetail: function () {
-      this.customer = this.$route.params.customObj;
+      this.customer = JSON.parse(this.$route.query.customObj);
     },
     // 初始化数据
     initCustomerList: function () {
