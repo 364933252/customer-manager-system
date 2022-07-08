@@ -102,6 +102,7 @@
 }
 
 .member_detail_item {
+
     // display: flex;
     // flex-flow: column;
     // justify-content: space-between;
@@ -111,6 +112,7 @@
     .el-card {
         margin: 10px 0;
     }
+
     .member_info_box {
         padding: 0 10px;
 
@@ -147,4 +149,54 @@
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgb(182, 180, 180);
+}
+
+.member_level_box {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .member_level_item {
+        width: 25%;
+        margin: 10px 0;
+
+        .level_item0,
+        .level_item1,
+        .level_item2 {
+            background: url('../vip_bg/vip1.png') top center no-repeat;
+            background-size: 100% 100%;
+            height: 200px;
+            position: relative;
+            color: #000;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #58585a,
+                2px 2px 0 #58585a,
+                3px 3px 0 #58585a,
+                4px 4px 0 #58585a;
+
+            .level_item_top {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+
+            }
+
+            .level_item_bottom {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                box-sizing: border-box;
+                padding: 10px;
+            }
+        }
+
+        .level_btns {
+            padding: 10px 0 0 0;
+            display: flex;
+            justify-content: center;
+        }
+    }
 }

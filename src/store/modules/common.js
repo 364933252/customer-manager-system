@@ -513,11 +513,16 @@ export default {
                 ]
             }
         ],
+        memberLevelList: []
     },
     mutations: {
         // 设置全局表格满屏高度
         setTableHeight: function (state, step) {
             state.tableHeight = step
+        },
+        // 新建会员等级
+        addMemberLevel: function (state, step) {
+            state.memberLevelList.push(step)
         }
     }
 }
