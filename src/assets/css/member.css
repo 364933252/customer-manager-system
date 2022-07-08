@@ -108,3 +108,10 @@
 .member_detail_item .member_info_box .member_info_item .info_item_right {
   flex: 5;
 }
+.member_level_container {
+  background: #ffffff;
+  height: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #b6b4b4;
+}

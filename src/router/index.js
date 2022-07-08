@@ -73,7 +73,20 @@ const routes = [
       {
         path: '/memberLevelList',
         name: 'memberLevelList',
-        component: () => import('../views/memberManage/memberLevelList')
+        component: () => import('../views/memberManage/memberLevelList'),
+        redirect: '/memberLevel',
+        children: [
+          {
+            path: '/memberLevel',
+            name: 'memberLevel',
+            component: () => import('../views/memberManage/memberLevelList/memberLevel')
+          },
+          {
+            path: '/levelGroup',
+            name: 'levelGroup',
+            component: () => import('../views/memberManage/memberLevelList/levelGroup')
+          }
+        ]
       },
       {
         path: '/memberDayManage',

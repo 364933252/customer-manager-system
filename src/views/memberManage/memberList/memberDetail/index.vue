@@ -106,7 +106,7 @@
                   border
                   stripe
                   style="width: 100%"
-                  :height="windowHeight - 205 + 'px'"
+                  :height="windowHeight - 207 + 'px'"
                 >
                   <el-table-column
                     prop="expense_time"
@@ -192,7 +192,7 @@
                   border
                   stripe
                   style="width: 100%"
-                  :height="windowHeight - 205 + 'px'"
+                  :height="windowHeight - 207 + 'px'"
                 >
                   <el-table-column
                     prop="expense_time"

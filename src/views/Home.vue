@@ -48,6 +48,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url('../assets/css/home.css');
 </style>
