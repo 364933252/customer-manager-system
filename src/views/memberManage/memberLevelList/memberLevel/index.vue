@@ -159,6 +159,7 @@ export default {
     // 切换会员等级背景
     changeLevelBg: function (index) {
       this.levelForm.levelBgIndex = index;
+      console.log(this.levelForm.levelBgIndex, '会员背景')
     },
     // 确定新建会员等级
     confirm: function () {

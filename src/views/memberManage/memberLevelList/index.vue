@@ -43,6 +43,9 @@ export default {
       ]
     };
   },
+  mounted() {
+    this.activeIndex = this.$route.name
+  },
   methods: {
     // 切换菜单
     changeMenu: function (item) {

@@ -92,6 +92,11 @@ const routes = [
         path: '/memberDayManage',
         name: 'memberDayManage',
         component: () => import('../views/memberManage/memberDayManage')
+      },
+      {
+        path: '/memberCube',
+        name: 'memberCube',
+        component: () => import('../views/memberManage/memberCube')
       }
     ]
   },

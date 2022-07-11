@@ -154,6 +154,14 @@
   box-sizing: border-box;
   padding: 10px;
 }
+.member_level_box .member_level_item .level_item1 {
+  background: url('../vip_bg/vip2.png') top center no-repeat;
+  background-size: 100% 100%;
+}
+.member_level_box .member_level_item .level_item2 {
+  background: url('../vip_bg/vip3.png') top center no-repeat;
+  background-size: 100% 100%;
+}
 .member_level_box .member_level_item .level_btns {
   padding: 10px 0 0 0;
   display: flex;

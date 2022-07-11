@@ -67,6 +67,12 @@ export default {
                         label: '纪念日管理',
                         icon: 's-custom',
                         name: 'memberDayManage'
+                    },
+                    {
+                        path: '/memberCube',
+                        label: '会员魔方',
+                        icon: 's-custom',
+                        name: 'memberCube'
                     }
                 ]
             }
