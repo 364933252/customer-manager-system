@@ -167,3 +167,10 @@
   display: flex;
   justify-content: center;
 }
+.member_cube_box {
+  display: flex;
+  flex-wrap: wrap9;
+}
+.member_cube_box .member_cube_item {
+  width: 20%;
+}
