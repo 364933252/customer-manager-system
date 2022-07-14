@@ -214,9 +214,40 @@
 // 会员魔方 start
 .member_cube_box {
     display: flex;
-    flex-wrap: wrap9;
+    flex-wrap: wrap;
+    padding-top: 10px;
     .member_cube_item {
         width: 20%;
+        .cube_item {
+            margin: 10px 0;
+            font-size: 14px;
+            span {
+                font-weight: bold;
+            }
+        }
+        .cube_item_action {
+            display: flex;
+            font-size: 14px;
+            span {
+                flex: 1;
+                font-weight: bold;
+            }
+            .cube_btns {
+                flex: 5;
+                display: flex;
+                flex-wrap: wrap;
+                .bts {
+                    width: 50%;
+                }
+                .bts:nth-child(3) {
+                    padding: 5px 0;
+                }
+                .bts:nth-child(4) {
+                    padding: 5px 0;
+                }
+            }
+        }
     }
+    
 }
 // 会员魔方 end

@@ -97,6 +97,11 @@ const routes = [
         path: '/memberCube',
         name: 'memberCube',
         component: () => import('../views/memberManage/memberCube')
+      },
+      {
+        path: '/addMemberCube',
+        name: 'addMemberCube',
+        component: () => import('../views/memberManage/memberCube/addMemberCube')
       }
     ]
   },

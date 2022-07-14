@@ -169,8 +169,38 @@
 }
 .member_cube_box {
   display: flex;
-  flex-wrap: wrap9;
+  flex-wrap: wrap;
+  padding-top: 10px;
 }
 .member_cube_box .member_cube_item {
   width: 20%;
+}
+.member_cube_box .member_cube_item .cube_item {
+  margin: 10px 0;
+  font-size: 14px;
+}
+.member_cube_box .member_cube_item .cube_item span {
+  font-weight: bold;
+}
+.member_cube_box .member_cube_item .cube_item_action {
+  display: flex;
+  font-size: 14px;
+}
+.member_cube_box .member_cube_item .cube_item_action span {
+  flex: 1;
+  font-weight: bold;
+}
+.member_cube_box .member_cube_item .cube_item_action .cube_btns {
+  flex: 5;
+  display: flex;
+  flex-wrap: wrap;
+}
+.member_cube_box .member_cube_item .cube_item_action .cube_btns .bts {
+  width: 50%;
+}
+.member_cube_box .member_cube_item .cube_item_action .cube_btns .bts:nth-child(3) {
+  padding: 5px 0;
+}
+.member_cube_box .member_cube_item .cube_item_action .cube_btns .bts:nth-child(4) {
+  padding: 5px 0;
 }
