@@ -181,6 +181,7 @@
 }
 .member_cube_box .member_cube_item .cube_item span {
   font-weight: bold;
+  margin-right: 10px;
 }
 .member_cube_box .member_cube_item .cube_item_action {
   display: flex;

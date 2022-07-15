@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="scroll_bar">
+    <div class="scroll_bar" :style="{height: height}">
       <slot></slot>
     </div>
   </div>
@@ -9,6 +9,12 @@
 <script>
 export default {
   name: 'scrollBar',
+  props: {
+    height: {
+      type: String,
+      default: '400px'
+    }
+  },
   data() {
     return {};
   }
@@ -18,7 +24,7 @@ export default {
 <style lang="less" scoped>
 .scroll_bar {
   width: 100%;
-  height: 400px;
+  // height: 400px;
   overflow: auto;
   // 滚动条整体部分
   &::-webkit-scrollbar {
