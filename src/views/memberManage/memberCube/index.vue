@@ -7,7 +7,7 @@
             type="success"
             icon="el-icon-circle-plus-outline"
             plain
-            @click="dialogVisible = true"
+            @click="navToAddCube"
             >新建魔方</el-button
           >
         </el-col>
@@ -101,6 +101,10 @@ export default {
     })
   },
   methods: {
+    // 跳转到添加会员魔方页面
+    navToAddCube: function () {
+      this.$router.push({name: 'addMemberCube'})
+    },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
@@ -111,6 +115,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url('../../../assets/css/member.css');
 </style>

@@ -252,3 +252,36 @@
     
 }
 // 会员魔方 end
+
+// 新建会员魔方 start
+.cube_filter_box {
+    padding: 10px 0;
+    .cube_filter_item {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        padding: 10px 0;
+        .filter_item_left {
+            flex: 1;
+            font-weight: bold;
+        }
+        .filter_item_right {
+            flex: 15;
+            display: flex;
+            .filter_box {
+                padding: 5px 10px;
+                margin: 0 5px;
+                border-radius: 5px;
+            }
+            // .filter_box:hover {
+            //     border: 1px solid rgba(224, 156, 67, 0.4);
+            // }
+            .filter_box-active {
+                color: #fff;
+                background: rgb(248, 122, 3);
+                border: 1px solid rgb(248, 122, 3);
+            }
+        }
+    }
+}
+// 新建会员魔方 end

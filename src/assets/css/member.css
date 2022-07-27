@@ -205,3 +205,30 @@
 .member_cube_box .member_cube_item .cube_item_action .cube_btns .bts:nth-child(4) {
   padding: 5px 0;
 }
+.cube_filter_box {
+  padding: 10px 0;
+}
+.cube_filter_box .cube_filter_item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 10px 0;
+}
+.cube_filter_box .cube_filter_item .filter_item_left {
+  flex: 1;
+  font-weight: bold;
+}
+.cube_filter_box .cube_filter_item .filter_item_right {
+  flex: 15;
+  display: flex;
+}
+.cube_filter_box .cube_filter_item .filter_item_right .filter_box {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+.cube_filter_box .cube_filter_item .filter_item_right .filter_box-active {
+  color: #fff;
+  background: #f87a03;
+  border: 1px solid #f87a03;
+}
