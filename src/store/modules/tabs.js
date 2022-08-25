@@ -19,63 +19,127 @@ export default {
                 icon: 's-home'
             },
             {
-                path: '/customerManage',
-                label: '客户管理',
+                path: '/liveManage',
+                label: '直播管理',
                 icon: 's-custom',
-                name: 'customerManage',
+                name: 'liveManage',
                 children: [
                     {
-                        path: '/clueList',
-                        label: '线索列表',
+                        path: '/roomList',
+                        label: '直播间',
                         icon: 's-custom',
-                        name: 'clueList'
+                        name: 'roomList'
                     },
                     {
-                        path: '/customerList',
-                        label: '客户列表',
+                        path: '/goodsList',
+                        label: '商品库',
                         icon: 's-custom',
-                        name: 'customerList'
+                        name: 'goodsList'
+                    },
+                    {
+                        path: '/anchorList',
+                        label: '直播成员',
+                        icon: 's-custom',
+                        name: 'anchorList' 
+                    },
+                    {
+                        path: '/subscribeManage',
+                        label: '订阅管理',
+                        icon: 's-custom',
+                        name: 'subscribeManage' 
+                    },
+                    {
+                        path: '/liveSet',
+                        label: '直播设置',
+                        icon: 's-custom',
+                        name: 'liveSet' ,
+                        children: [
+                            {
+                                path: '/serviceManage',
+                                label: '客服管理',
+                                icon: '',
+                                name: 'serviceManage',
+                            },
+                            {
+                                path: '/serviceManage',
+                                label: '回访管理',
+                                icon: '',
+                                name: 'serviceManage',
+                            },
+                            {
+                                path: '/silentManage',
+                                label: '禁言管理',
+                                icon: '',
+                                name: 'silentManage',
+                            },
+                            {
+                                path: '/embodyManage',
+                                label: '收录管理',
+                                icon: '',
+                                name: 'embodyManage',
+                            }
+                        ]
                     }
                 ]
             },
-            {
-                path: '/memberManage',
-                label: '会员管理',
-                name: 'memberManage',
-                icon: 's-custom',
-                children: [
-                    {
-                        path: '/memberList',
-                        label: '会员列表',
-                        icon: 's-custom',
-                        name: 'memberList'
-                    },
-                    {
-                        path: '/memberTypeList',
-                        label: '会员类型管理',
-                        icon: 's-custom',
-                        name: 'memberTypeList'
-                    },
-                    {
-                        path: '/memberLevelList',
-                        label: '会员等级管理',
-                        icon: 's-custom',
-                        name: 'memberLevelList'
-                    },
-                    {
-                        path: '/memberDayManage',
-                        label: '纪念日管理',
-                        icon: 's-custom',
-                        name: 'memberDayManage'
-                    },
-                    {
-                        path: '/memberCube',
-                        label: '会员魔方',
-                        icon: 's-custom',
-                        name: 'memberCube'
-                    }
-                ]
-            }
+            // {
+            //     path: '/customerManage',
+            //     label: '客户管理',
+            //     icon: 's-custom',
+            //     name: 'customerManage',
+            //     children: [
+            //         {
+            //             path: '/clueList',
+            //             label: '线索列表',
+            //             icon: 's-custom',
+            //             name: 'clueList'
+            //         },
+            //         {
+            //             path: '/customerList',
+            //             label: '客户列表',
+            //             icon: 's-custom',
+            //             name: 'customerList'
+            //         }
+            //     ]
+            // },
+            // {
+            //     path: '/memberManage',
+            //     label: '会员管理',
+            //     name: 'memberManage',
+            //     icon: 's-custom',
+            //     children: [
+            //         {
+            //             path: '/memberList',
+            //             label: '会员列表',
+            //             icon: 's-custom',
+            //             name: 'memberList'
+            //         },
+            //         {
+            //             path: '/memberTypeList',
+            //             label: '会员类型管理',
+            //             icon: 's-custom',
+            //             name: 'memberTypeList'
+            //         },
+            //         {
+            //             path: '/memberLevelList',
+            //             label: '会员等级管理',
+            //             icon: 's-custom',
+            //             name: 'memberLevelList'
+            //         },
+            //         {
+            //             path: '/memberDayManage',
+            //             label: '纪念日管理',
+            //             icon: 's-custom',
+            //             name: 'memberDayManage'
+            //         },
+            //         {
+            //             path: '/memberCube',
+            //             label: '会员魔方',
+            //             icon: 's-custom',
+            //             name: 'memberCube'
+            //         }
+            //     ]
+            // }
         ]
     },
     mutations: {

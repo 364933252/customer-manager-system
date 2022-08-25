@@ -6,6 +6,104 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "24859976",
+      "name": "下载-文件下载-18",
+      "font_class": "xiazai-wenjianxiazai-18",
+      "unicode": "e856",
+      "unicode_decimal": 59478
+    },
+    {
+      "icon_id": "3405313",
+      "name": "直播回放",
+      "font_class": "zhibohuifang",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "13533320",
+      "name": "live 视频直播",
+      "font_class": "liveshipinzhibo",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "2945797",
+      "name": "商品资料审核",
+      "font_class": "shangpinziliaoshenhe",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "3781699",
+      "name": "官方授权",
+      "font_class": "guanfangshouquan",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "4238975",
+      "name": "直播",
+      "font_class": "zhibo",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "7947447",
+      "name": "直播间配置",
+      "font_class": "zhibojianpeizhi",
+      "unicode": "e674",
+      "unicode_decimal": 58996
+    },
+    {
+      "icon_id": "11125629",
+      "name": "客服",
+      "font_class": "10",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "14843454",
+      "name": "主播管理",
+      "font_class": "zhuboguanli",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "16137372",
+      "name": "商品管理",
+      "font_class": "shangpinguanli",
+      "unicode": "e7cb",
+      "unicode_decimal": 59339
+    },
+    {
+      "icon_id": "16942382",
+      "name": "直播",
+      "font_class": "zhibo1",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "18533060",
+      "name": "成员维护",
+      "font_class": "chengyuanweihu",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "24858589",
+      "name": "订阅-关注-09",
+      "font_class": "dingyue-guanzhu-09",
+      "unicode": "e819",
+      "unicode_decimal": 59417
+    },
+    {
+      "icon_id": "25687543",
+      "name": "直播间",
+      "font_class": "zhibojian",
+      "unicode": "ff6b",
+      "unicode_decimal": 65387
+    },
+    {
       "icon_id": "577355",
       "name": "筛选",
       "font_class": "shaixuan",

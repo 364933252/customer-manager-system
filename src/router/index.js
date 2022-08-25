@@ -102,6 +102,11 @@ const routes = [
         path: '/addMemberCube',
         name: 'addMemberCube',
         component: () => import('../views/memberManage/memberCube/addMemberCube')
+      },
+      {
+        path: '/roomList',
+        name: 'roomList',
+        component: () => import('../views/LiveManage/RoomManage/RoomList')
       }
     ]
   },
