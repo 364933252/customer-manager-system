@@ -24,35 +24,18 @@
             </ul>
           </div> -->
           <div class="login_form_box">
-            <el-form
-              ref="loginFormRef"
-              :model="loginForm"
-              :rules="loginFormRules"
-            >
-              <el-form-item label="" prop="Entry.phone">
-                <el-input
-                  v-model="loginForm.Entry.phone"
-                  placeholder="请输入手机号"
-                  prefix-icon="el-icon-user"
-                  clearable
-                ></el-input>
+            <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules">
+              <el-form-item label="" prop="Entry.Phone">
+                <el-input v-model="loginForm.Entry.Phone" placeholder="请输入手机号" prefix-icon="el-icon-user" clearable>
+                </el-input>
               </el-form-item>
               <el-form-item label="" prop="Entry.Password">
                 <div class="send_msg">
-                  <el-input
-                    type="text"
-                    v-model="loginForm.Entry.Password"
-                    placeholder="请输入验证码"
-                    prefix-icon="el-icon-mobile"
-                    clearable
-                  ></el-input>
-                  <el-button type="primary" v-if="!isSend" @click="countDown"
-                    >获取验证码</el-button
-                  >
+                  <el-input type="text" v-model="loginForm.Entry.Password" placeholder="请输入验证码"
+                    prefix-icon="el-icon-mobile" clearable></el-input>
+                  <el-button type="primary" v-if="!isSend" @click="sendMsg">获取验证码</el-button>
                   <div v-if="isSend">
-                    <el-button type="info" disabled plain
-                      >{{ second }}s</el-button
-                    >
+                    <el-button type="info" disabled plain>{{ second }}s</el-button>
                   </div>
                 </div>
               </el-form-item>
@@ -72,7 +55,6 @@
 
 <script>
 import { loginApi, sendMsg } from '@/api/login/login';
-import axios from '@/utils/axios';
 export default {
   data() {
     return {
@@ -81,13 +63,13 @@ export default {
           PortId: '101'
         },
         Entry: {
-          phone: '',
+          Phone: '',
           Password: '',
           LoginType: '901'
         }
       },
       loginFormRules: {
-        'Entry.phone': [
+        'Entry.Phone': [
           { required: true, message: '请输入手机号', trigger: 'blur' }
         ],
         'Entry.Password': [
@@ -102,16 +84,16 @@ export default {
     // 登录
     login: async function () {
       this.$refs.loginFormRef.validate(async (valid) => {
-        if (!valid) return false
-        loginApi(this.loginForm).then(res => {
-          console.log(res);
-        })
-        
+        if (valid) return false
+        const { data: res } = await loginApi(this.loginForm)
+        if (res.code !== 0) return false
+        window.sessionStorage.setItem('AccessToken', res.data[0].AccessToken)
+        this.$router.push('/home')
+        console.log(res, '登录');
       });
     },
     // 倒计时
     countDown: async function () {
-      console.log(111);
       var interVal = setInterval(() => {
         var second = this.second;
         if (second === 0) {
@@ -124,20 +106,22 @@ export default {
           this.isSend = true;
         }
       }, 1000);
-      this.sendMsg();
     },
     // 发送验证码
     sendMsg: async function () {
       const param = {
         Entry: {
-          Phone: this.loginForm.Entry.phone
+          Phone: this.loginForm.Entry.Phone
         }
       };
-      axios.post('/api/Authorize/SendPassWord',param).then(res => {
-        console.log(res);
-      });
-      // const res = await this.$http.post('https://dataexpansion.cn/api/Authorize/SendPassWord',param)
-      // console.log(res);
+
+      this.$refs.loginFormRef.validateField('Entry.Phone', async valid => {
+        console.log(valid, '发送验证码校验')
+        if (valid) return false
+        const { data: res } = await sendMsg(param)
+        if (res.code === 1 ) return this.$message.warning('发送频繁，请稍后再试！')
+        this.countDown()
+      })
     }
   }
 };

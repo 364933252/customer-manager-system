@@ -9,7 +9,6 @@ export const loginApi = (data) => {
 }
 
 export const sendMsg = (param) => {
-    console.log(param);
     return request({
         url: '/api/Authorize/SendPassWord',
         method: 'POST',
