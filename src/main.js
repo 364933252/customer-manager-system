@@ -6,9 +6,10 @@ import './plugins/element.js'
 import '../src/assets/css/global.css'
 import '../src/assets/iconfont/iconfont.css'
 import Contextmenu from "vue-contextmenujs"
+import axios from "axios"
 
 Vue.config.productionTip = false
-
+Vue.prototype.$http = axios
 Vue.use(Contextmenu)
 
 new Vue({

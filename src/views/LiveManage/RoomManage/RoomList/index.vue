@@ -1,5 +1,9 @@
 <template>
-  <div>直播间列表页面</div>
+  <div>
+    <el-card>
+        11
+    </el-card>
+  </div>
 </template>
 
 <script>

@@ -173,6 +173,9 @@
 .container .login .login_box .login_box_right .login_form_box /deep/ .el-input__prefix {
   color: #000;
 }
+.container .login .login_box .login_box_right .login_form_box .send_msg {
+  display: flex;
+}
 .container .login .login_box .login_box_right .login_form_box .form_btn {
   display: flex;
   justify-content: center;

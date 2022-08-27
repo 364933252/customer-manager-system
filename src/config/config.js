@@ -1,3 +1,3 @@
 export default {
-    baseUrl: 'http://192.168.1.204'
+    baseUrl: 'https://dataexpansion.cn'
 }

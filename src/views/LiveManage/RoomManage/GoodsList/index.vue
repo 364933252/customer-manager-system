@@ -1,6 +1,8 @@
 <template>
   <div>
-    商品列表页面
+    <el-card>
+      11
+    </el-card>
   </div>
 </template>
 
