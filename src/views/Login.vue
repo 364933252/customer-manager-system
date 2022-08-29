@@ -64,7 +64,7 @@ export default {
         },
         Entry: {
           Phone: '15689360191',
-          Password: '',
+          Password: '956598',
           LoginType: '901'
         }
       },
@@ -86,7 +86,7 @@ export default {
       this.$refs.loginFormRef.validate(async (valid) => {
         if (!valid) return false
         const { data: res } = await loginApi(this.loginForm)
-        if (res.code !== 0) return false
+        if (res.code !== 200) return false
         window.sessionStorage.setItem('AccessToken', res.data[0].AccessToken)
         window.sessionStorage.setItem('BusinessId', res.data[0].BusinessId)
         window.sessionStorage.setItem('OrgnName', res.data[0].OrgnName)

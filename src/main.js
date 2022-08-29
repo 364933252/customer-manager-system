@@ -7,9 +7,11 @@ import '../src/assets/css/global.css'
 import '../src/assets/iconfont/iconfont.css'
 import Contextmenu from "vue-contextmenujs"
 import axios from "axios"
+import moment from "moment"
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
+Vue.prototype.$moment = moment
 Vue.use(Contextmenu)
 
 new Vue({

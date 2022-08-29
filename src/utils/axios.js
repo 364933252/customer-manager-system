@@ -34,14 +34,14 @@ axios.interceptors.request.use(config => {
 
 // 配置返回拦截器
 axios.interceptors.response.use(response => {
-    console.log(response)
+    // console.log(response)
     // const status = response.data.code || response.status || response.statusCode
     // const msg = response.data.msg || response.data.error_description
     const status = response.data.code || response.status
     const msg = response.data.msg
     console.log(status);
     if (status === 401) return router.push({ path: '/login' });
-    if (status !== 0 || status !== 200) return Message({ message: msg, type: 'error' });
+    if (status !== 200) return Message({ message: msg, type: 'error' });
     Message({
         message: msg,
         type: 'success'
