@@ -63,7 +63,7 @@ export default {
           PortId: '101'
         },
         Entry: {
-          Phone: '',
+          Phone: '15689360191',
           Password: '',
           LoginType: '901'
         }
@@ -84,10 +84,14 @@ export default {
     // 登录
     login: async function () {
       this.$refs.loginFormRef.validate(async (valid) => {
-        if (valid) return false
+        if (!valid) return false
         const { data: res } = await loginApi(this.loginForm)
         if (res.code !== 0) return false
         window.sessionStorage.setItem('AccessToken', res.data[0].AccessToken)
+        window.sessionStorage.setItem('BusinessId', res.data[0].BusinessId)
+        window.sessionStorage.setItem('OrgnName', res.data[0].OrgnName)
+        window.sessionStorage.setItem('RefreshToken', res.data[0].RefreshToken)
+        window.sessionStorage.setItem('TypeName', res.data[0].TypeName)
         this.$router.push('/home')
         console.log(res, '登录');
       });
