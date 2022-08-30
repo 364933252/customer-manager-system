@@ -1,3 +1,6 @@
+.form_item {
+  padding: 50px 0;
+}
 .room_live_list_box {
   display: flex;
   align-items: center;
@@ -19,11 +22,11 @@
   position: relative;
   border-radius: 10px;
   width: 200px;
-  height: 425px;
+  height: 350px;
 }
 .room_live_list_box .room_live_list .room_live .room_live_item_box .live_item_bg {
   width: 200px;
-  height: 425px;
+  height: 350px;
   border-radius: 10px;
 }
 .room_live_list_box .room_live_list .room_live .room_live_item_box .anchor_info_box {
@@ -50,9 +53,35 @@
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.2);
 }
-.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status {
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status,
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status1,
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status2,
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status3,
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status4,
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status5,
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status6 {
   font-size: 10px;
+}
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status {
   color: #04f023;
+}
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status1 {
+  color: #000000;
+}
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status2 {
+  color: #3d3f3d;
+}
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status3 {
+  color: #f77c0a;
+}
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status4 {
+  color: #adda0b;
+}
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status5 {
+  color: #f04704;
+}
+.room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status6 {
+  color: #f00c04;
 }
 .room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_name_box {
   color: #fff;
@@ -100,4 +129,144 @@
   margin-top: 10px;
   display: flex;
   justify-content: center;
+}
+.live_img_box {
+  display: flex;
+  margin-bottom: 10px;
+}
+.live_img_box .live_share_box {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.live_img_box .live_share_box .live_share,
+.live_img_box .live_share_box .live_share1 {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
+.live_img_box .live_share_box .live_share .live_share_title,
+.live_img_box .live_share_box .live_share1 .live_share_title {
+  display: flex;
+  padding: 10px 0;
+}
+.live_img_box .live_share_box .live_share .live_share_title .share_title_img,
+.live_img_box .live_share_box .live_share1 .live_share_title .share_title_img {
+  display: flex;
+}
+.live_img_box .live_share_box .live_share .live_share_title .share_title_img .title_img,
+.live_img_box .live_share_box .live_share1 .live_share_title .share_title_img .title_img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.live_img_box .live_share_box .live_share .live_share_title .share_title,
+.live_img_box .live_share_box .live_share1 .live_share_title .share_title {
+  font-size: 14px;
+  margin-left: 5px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.live_img_box .live_share_box .live_share .share_desc_info,
+.live_img_box .live_share_box .live_share1 .share_desc_info {
+  padding: 5px 0;
+}
+.live_img_box .live_share_box .live_share .share_goods_box,
+.live_img_box .live_share_box .live_share1 .share_goods_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.live_img_box .live_share_box .live_share .share_goods_box .goods_box,
+.live_img_box .live_share_box .live_share1 .share_goods_box .goods_box {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 0 2px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.live_img_box .live_share_box .live_share .live_share_img,
+.live_img_box .live_share_box .live_share1 .live_share_img {
+  display: flex;
+}
+.live_img_box .live_share_box .live_share .live_share_img .share_img,
+.live_img_box .live_share_box .live_share1 .live_share_img .share_img {
+  border-radius: 5px;
+}
+.live_img_box .live_share_box .live_share {
+  margin-left: 10px;
+}
+.live_img_box .live_form_box {
+  width: 60%;
+  padding: 0 15px;
+}
+.live_img_box .live_form_box .form_info_box .info_title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.live_img_box .live_form_box .form_info_box .info_desc {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+.live_cover_bg_box {
+  display: flex;
+}
+.live_cover_bg_box .live_cover_bg {
+  position: relative;
+  width: 41%;
+  height: 600px;
+  background: url('../images/live_cover.png') no-repeat top center;
+  background-size: 100% 100%;
+}
+.live_cover_bg_box .live_cover_bg .cover_bottom_box {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.live_cover_bg_box .live_cover_bg .cover_bottom_box .live_comment_box {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  margin: 0 5px;
+  border-radius: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+}
+.live_cover_bg_box .live_cover_bg .cover_bottom_box .live_care_box {
+  display: flex;
+  padding: 6px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+}
+.live_cover_bg_box .live_cover_bg .cover_bottom_box .live_care_box .care_img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.live_cover_bg_box .live_cover_info_box {
+  width: 59%;
+}
+.live_cover_bg_box .live_cover_info_box .cover_info_box {
+  margin: 0 15px;
+}
+.live_cover_bg_box .live_cover_info_box .cover_info_box .info_title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.live_cover_bg_box .live_cover_info_box .cover_info_box .info_desc {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
 }
