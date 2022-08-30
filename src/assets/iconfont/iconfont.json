@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "17876335",
+      "name": "控制面板",
+      "font_class": "kongzhimianban",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
       "icon_id": "24859976",
       "name": "下载-文件下载-18",
       "font_class": "xiazai-wenjianxiazai-18",
