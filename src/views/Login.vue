@@ -64,7 +64,7 @@ export default {
         },
         Entry: {
           Phone: '15689360191',
-          Password: '825557',
+          Password: '818686',
           LoginType: '901'
         }
       },
@@ -93,7 +93,6 @@ export default {
         window.sessionStorage.setItem('RefreshToken', res.data[0].RefreshToken)
         window.sessionStorage.setItem('TypeName', res.data[0].TypeName)
         this.$router.push('/home')
-        console.log(res, '登录');
       });
     },
     // 倒计时

@@ -15,13 +15,15 @@ axios.defaults.validateStatus = (status) => {
 // 配置请求拦截器
 axios.interceptors.request.use(config => {
     // 设置让每个请求携带token
-    if (sessionStorage.getItem('AccessToken')) {
-        // config.headers['Authorization'] = localStorage.getItem('token')
-        const comm = {
-            "PortId": "101",
-            "AccessToken": sessionStorage.getItem('AccessToken')
+    if (config.method !== 'get') {
+        if (sessionStorage.getItem('AccessToken')) {
+            // config.headers['Authorization'] = localStorage.getItem('token')
+            const comm = {
+                "PortId": "101",
+                "AccessToken": sessionStorage.getItem('AccessToken')
+            }
+            config.data['comm'] = comm
         }
-        config.data['comm'] = comm
     }
     //配置请求参数格式
     config.headers['Content-Type'] = 'application/json'
