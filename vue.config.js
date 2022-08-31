@@ -6,6 +6,13 @@ module.exports = {
     open: true, //配置是否自动浏览器
     https: false, //是否启用https
     proxy: {
+      '/api/wx': {
+        target: 'https://api.weixin.qq.com/cgi-bin',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/wxaapi': ''
+        }
+      },
       '/api/business': {
         target: 'http://pngo.top/api',
         changeOrigin: true,
@@ -19,7 +26,7 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
-      }
+      },
     }
   }
 }
