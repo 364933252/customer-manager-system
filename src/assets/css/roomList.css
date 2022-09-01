@@ -66,7 +66,7 @@
   color: #04f023;
 }
 .room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status1 {
-  color: #000000;
+  color: #fffdfd;
 }
 .room_live_list_box .room_live_list .room_live .room_live_item_box .room_info_box .room_status_box .room_status2 {
   color: #3d3f3d;
@@ -200,6 +200,10 @@
 .live_img_box .live_share_box .live_share {
   margin-left: 10px;
 }
+.live_img_box .live_share_box .live_share1 {
+  width: 150px;
+  height: 140px;
+}
 .live_img_box .live_form_box {
   width: 60%;
   padding: 0 15px;
@@ -220,7 +224,7 @@
 .live_cover_bg_box .live_cover_bg {
   position: relative;
   width: 41%;
-  height: 600px;
+  height: 500px;
   background: url('../images/live_cover.png') no-repeat top center;
   background-size: 100% 100%;
 }

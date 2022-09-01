@@ -21,3 +21,14 @@ export const uploadImg = (url, data) => {
         method: 'POST'
     })
 }
+
+// 创建直播间
+export const addLiveRoom = (params) => {
+    return request({
+        url: '/api/business/BroadcastRoom/CreateBroadcastRoom',
+        method: 'POST',
+        data: {
+            ...params
+        }
+    })
+}

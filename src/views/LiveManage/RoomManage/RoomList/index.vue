@@ -27,7 +27,7 @@
                 <div class="anchor_info_box">
                   <el-avatar>主播</el-avatar>
                   <div style="font-size: 12px; color: #fff; margin-left: 5px">
-                    {{item.anchor_name}}
+                    {{ item.anchor_name }}
                   </div>
                 </div>
                 <div class="room_info_box">
@@ -101,7 +101,7 @@
                   ><i class="iconfont icon-kongzhimianban"></i
                 ></el-divider>
                 <div class="live_room_action">
-                  <div class="action">
+                  <!-- <div class="action">
                     <span style="margin-right: 5px">是否禁言:</span>
                     <div class="switch_box">
                       <el-switch
@@ -115,7 +115,7 @@
                         inactive-text="否"
                       ></el-switch>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="action">
                     <span style="margin-right: 5px">是否评论:</span>
                     <div class="switch_box">
@@ -307,6 +307,7 @@ export default {
         }
       };
       const { data: res } = await getRoomList(param);
+      console.log(res);
       this.roomList = res.data.room_info;
       this.total = res.data.total;
     },
@@ -319,7 +320,25 @@ export default {
     // 是否开启评论
     isComment: async function (item) {
       const params = {
-        Entry: item
+        Entry: {
+          id: Number(item.roomid),
+          Name: item.name,
+          CoverImg: item.CoverImg,
+          StartTime: moment(Number(item.start_time * 1000)).format('YYYY-MM-DD HH:mm:ss'),
+          EndTime: moment(Number(item.end_time * 1000)).format('YYYY-MM-DD HH:mm:ss'),
+          AnchorName: item.anchor_name,
+          AnchorWechat: item.AnchorWechat,
+          ShareImg: item.ShareImg,
+          FeedsImg: item.FeedsImg,
+          IsFeedsPublic: Number(item.is_feeds_public),
+          Type: 0,
+          CloseLike: Number(item.close_like),
+          CloseGoods: Number(item.close_goods),
+          CloseComment: Number(item.close_comment),
+          CloseReplay: Number(item.close_replay),
+          CloseShare: 0,
+          CloseKf: Number(item.close_kf)
+        }
       };
       console.log(params.Entry, '13');
       const { data: res } = await isComment(params);

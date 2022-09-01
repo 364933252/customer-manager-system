@@ -10,7 +10,7 @@ module.exports = {
         target: 'https://api.weixin.qq.com/cgi-bin',
         changeOrigin: true,
         pathRewrite: {
-          '^/api/wxaapi': ''
+          '^/api/wx': ''
         }
       },
       '/api/business': {
