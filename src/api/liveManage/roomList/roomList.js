@@ -9,8 +9,8 @@ export const getRoomList = (params) => {
         }
     })
 }
-// 是否评论
-export const isComment = (params) => {
+// 列表修改直播间是否评论/是否点赞/是否客服
+export const editRomm = (params) => {
     return request({
         url: '/api/business/BroadcastRoom/EditBroadcastRoom',
         method: 'POST',
@@ -19,20 +19,11 @@ export const isComment = (params) => {
         }
     })
 }
-// 是否点赞
-export const isLike = (params) => {
+
+// 删除直播间
+export const deleteRoom = (params) => {
     return request({
-        url: '/api/business/BroadcastRoom/EditBroadcastRoom',
-        method: 'POST',
-        data: {
-            ...params
-        }
-    })
-}
-// 是否客服
-export const isService = (params) => {
-    return request({
-        url: '/api/business/BroadcastRoom/EditBroadcastRoom',
+        url: '/api/business/BroadcastRoom/Deleteroom',
         method: 'POST',
         data: {
             ...params

@@ -2,28 +2,14 @@
   <div>
     <el-card>
       <div style="padding: 5px">
-        <el-button
-          type="success"
-          @click="navToAddRoom"
-          icon="el-icon-circle-plus-outline"
-          >新建直播间</el-button
-        >
+        <el-button type="success" @click="navToAddRoom" icon="el-icon-circle-plus-outline">新建直播间</el-button>
       </div>
       <scroll-bar :height="widowHeight - 30 + 'px'">
         <div class="room_live_list_box">
-          <div
-            class="room_live_list"
-            v-for="item in roomList"
-            :key="item.roomId"
-          >
+          <div class="room_live_list" v-for="item in roomList" :key="item.roomId">
             <div class="room_live">
               <div class="room_live_item_box">
-                <img
-                  :src="item.cover_img"
-                  class="live_item_bg"
-                  alt=""
-                  srcset=""
-                />
+                <img :src="item.cover_img" class="live_item_bg" alt="" srcset="" />
                 <div class="anchor_info_box">
                   <el-avatar>主播</el-avatar>
                   <div style="font-size: 12px; color: #fff; margin-left: 5px">
@@ -32,27 +18,13 @@
                 </div>
                 <div class="room_info_box">
                   <div class="room_status_box">
-                    <span class="room_status" v-if="item.live_status === '101'"
-                      >● 直播中</span
-                    >
-                    <span class="room_status1" v-if="item.live_status === '102'"
-                      >● 未开始</span
-                    >
-                    <span class="room_status2" v-if="item.live_status === '103'"
-                      >● 已结束</span
-                    >
-                    <span class="room_status3" v-if="item.live_status === '104'"
-                      >● 禁播</span
-                    >
-                    <span class="room_status4" v-if="item.live_status === '105'"
-                      >● 暂停</span
-                    >
-                    <span class="room_status5" v-if="item.live_status === '106'"
-                      >● 异常</span
-                    >
-                    <span class="room_status6" v-if="item.live_status === '107'"
-                      >● 已过期</span
-                    >
+                    <span class="room_status" v-if="item.live_status === '101'">● 直播中</span>
+                    <span class="room_status1" v-if="item.live_status === '102'">● 未开始</span>
+                    <span class="room_status2" v-if="item.live_status === '103'">● 已结束</span>
+                    <span class="room_status3" v-if="item.live_status === '104'">● 禁播</span>
+                    <span class="room_status4" v-if="item.live_status === '105'">● 暂停</span>
+                    <span class="room_status5" v-if="item.live_status === '106'">● 异常</span>
+                    <span class="room_status6" v-if="item.live_status === '107'">● 已过期</span>
                   </div>
                   <div class="room_name_box">@2022丶价钱散人</div>
                 </div>
@@ -72,34 +44,22 @@
                   </div>
                   <div class="info_item">
                     <span class="item_label">开播时间:</span>
-                    <el-tooltip
-                      class="item"
-                      effect="light"
-                      :content="item.start_time | dateFilter"
-                      placement="top"
-                    >
+                    <el-tooltip class="item" effect="light" :content="item.start_time | dateFilter" placement="top">
                       <span class="item_value">{{
-                        item.start_time | dateFilter
+                          item.start_time | dateFilter
                       }}</span>
                     </el-tooltip>
                   </div>
                   <div class="info_item">
                     <span class="item_label">结束时间:</span>
-                    <el-tooltip
-                      class="item"
-                      effect="light"
-                      :content="item.end_time | dateFilter"
-                      placement="top"
-                    >
+                    <el-tooltip class="item" effect="light" :content="item.end_time | dateFilter" placement="top">
                       <span class="item_value">{{
-                        item.end_time | dateFilter
+                          item.end_time | dateFilter
                       }}</span>
                     </el-tooltip>
                   </div>
                 </div>
-                <el-divider
-                  ><i class="iconfont icon-kongzhimianban"></i
-                ></el-divider>
+                <el-divider><i class="iconfont icon-kongzhimianban"></i></el-divider>
                 <div class="live_room_action">
                   <!-- <div class="action">
                     <span style="margin-right: 5px">是否禁言:</span>
@@ -119,17 +79,17 @@
                   <div class="action">
                     <span style="margin-right: 5px">是否评论:</span>
                     <div class="switch_box">
-                      <el-switch
-                        :width="40"
-                        v-model="item.close_comment"
-                        active-value="1"
-                        inactive-value="0"
-                        active-color="#13ce66"
-                        inactive-color="#ff4949"
-                        active-text="是"
-                        inactive-text="否"
-                        @change="isComment(item)"
-                      ></el-switch>
+                      <el-popover placement="top" trigger="click" width="160" @hide="hidePopver">
+                        <p>这是一段内容这是一段内容确定删除吗？</p>
+                        <div style="text-align: right; margin: 0">
+                          <el-button size="mini" type="text" @click="isNoEditRoom">取消</el-button>
+                          <el-button type="primary" size="mini" @click="editRoom(item)">确定</el-button>
+                        </div>
+
+                        <el-switch :width="40" v-model="item.close_comment" active-value="1" inactive-value="0"
+                          active-color="#13ce66" inactive-color="#ff4949" active-text="是" inactive-text="否"
+                          slot="reference"></el-switch>
+                      </el-popover>
                     </div>
                   </div>
                   <!-- <div class="action">
@@ -150,31 +110,31 @@
                   <div class="action">
                     <span style="margin-right: 5px">是否点赞:</span>
                     <div class="switch_box">
-                      <el-switch
-                        :width="40"
-                        v-model="item.close_like"
-                        active-value="1"
-                        inactive-value="0"
-                        active-color="#13ce66"
-                        inactive-color="#ff4949"
-                        active-text="是"
-                        inactive-text="否"
-                      ></el-switch>
+                      <el-popover placement="top" trigger="click" width="160" @hide="hidePopver">
+                        <p>这是一段内容这是一段内容确定删除吗？</p>
+                        <div style="text-align: right; margin: 0">
+                          <el-button size="mini" type="text" @click="isNoEditRoom">取消</el-button>
+                          <el-button type="primary" size="mini" @click="editRoom(item)">确定</el-button>
+                        </div>
+                        <el-switch :width="40" slot="reference" v-model="item.close_like" active-value="1"
+                          inactive-value="0" active-color="#13ce66" inactive-color="#ff4949" active-text="是"
+                          inactive-text="否"></el-switch>
+                      </el-popover>
                     </div>
                   </div>
                   <div class="action">
                     <span style="margin-right: 5px">是否客服:</span>
                     <div class="switch_box">
-                      <el-switch
-                        :width="40"
-                        v-model="item.close_kf"
-                        active-value="1"
-                        inactive-value="0"
-                        active-color="#13ce66"
-                        inactive-color="#ff4949"
-                        active-text="是"
-                        inactive-text="否"
-                      ></el-switch>
+                      <el-popover placement="top" trigger="click" width="160" @hide="hidePopver">
+                        <p>这是一段内容这是一段内容确定删除吗？</p>
+                        <div style="text-align: right; margin: 0">
+                          <el-button size="mini" type="text" @click="isNoEditRoom">取消</el-button>
+                          <el-button type="primary" size="mini" @click="editRoom(item)">确定</el-button>
+                        </div>
+                        <el-switch :width="40" slot="reference" v-model="item.close_kf" active-value="1"
+                          inactive-value="0" active-color="#13ce66" inactive-color="#ff4949" active-text="是"
+                          inactive-text="否"></el-switch>
+                      </el-popover>
                     </div>
                   </div>
                   <!-- <div class="action">
@@ -208,31 +168,11 @@
                     </div>
                   </div> -->
                   <div class="action_btns">
-                    <el-tooltip
-                      class="item"
-                      effect="dark"
-                      content="修改"
-                      placement="top"
-                    >
-                      <el-button
-                        type="warning"
-                        icon="el-icon-edit"
-                        circle
-                        size="mini"
-                      ></el-button>
+                    <el-tooltip class="item" effect="dark" content="修改" placement="top">
+                      <el-button type="warning" icon="el-icon-edit" circle size="mini" @click="navToEditRoom(item.roomid)"></el-button>
                     </el-tooltip>
-                    <el-tooltip
-                      content="删除"
-                      class="item"
-                      effect="dark"
-                      placement="top"
-                    >
-                      <el-button
-                        type="danger"
-                        icon="el-icon-delete"
-                        circle
-                        size="mini"
-                      ></el-button>
+                    <el-tooltip content="删除" class="item" effect="dark" placement="top">
+                      <el-button type="danger" @click="deleteRoom(item.roomid)" icon="el-icon-delete" circle size="mini"></el-button>
                     </el-tooltip>
                   </div>
                 </div>
@@ -242,16 +182,9 @@
         </div>
       </scroll-bar>
       <div style="display: flex; justify-content: flex-end">
-        <el-pagination
-          background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="queryInfo.start"
-          :page-sizes="[12, 24, 36, 48, 50]"
-          :page-size="queryInfo.limit"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="total"
-        >
+        <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange"
+          :current-page="queryInfo.start" :page-sizes="[12, 24, 36, 48, 50]" :page-size="queryInfo.limit"
+          layout="total, sizes, prev, pager, next, jumper" :total="total">
         </el-pagination>
       </div>
     </el-card>
@@ -263,9 +196,8 @@ import { mapState } from 'vuex';
 import scrollBar from '@/components/common/scrollBar.vue';
 import {
   getRoomList,
-  isComment,
-  isLike,
-  isService
+  editRomm,
+  deleteRoom
 } from '@/api/liveManage/roomList/roomList';
 import moment from 'moment';
 export default {
@@ -280,7 +212,9 @@ export default {
       },
       total: 10,
       roomList: [],
-      isNoSay: ''
+      isNoSay: '',
+      isCommentVisible: false,
+      visible: false
     };
   },
   computed: {
@@ -317,8 +251,8 @@ export default {
         name: 'addRoom'
       });
     },
-    // 是否开启评论
-    isComment: async function (item) {
+    // 确定关闭评论
+    editRoom: async function (item) {
       const params = {
         Entry: {
           id: Number(item.roomid),
@@ -341,14 +275,51 @@ export default {
         }
       };
       console.log(params.Entry, '13');
-      const { data: res } = await isComment(params);
-      console.log(res);
+      const { data: res } = await editRomm(params);
+      // this.getRoomList()
+      document.body.click()
+      // console.log(res);
+    },
+    // 删除直播间
+    deleteRoom: async function (roomid) {
+      const params = {
+        Entry: {
+          id: Number(roomid)
+        }
+      }
+      const confirmResult  = await this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+      }).catch(err => err)
+      if (confirmResult !== 'confirm') {
+        this.getRoomList()
+        return this.$message.info('已取消删除！')
+      }
+      const { data: res} = await deleteRoom(params)
+      this.getRoomList()
+    },
+    // 取消关闭评论
+    isNoEditRoom: function () {
+      document.body.click()
+    },
+    // 隐藏修改直播间弹框事件
+    hidePopver: function () {
+      this.getRoomList()
+    },
+    // 跳转至修改直播间页面
+    navToEditRoom: function (roomid) {
+      this.$router.push(`/editRoom/${roomid}`)
     },
     handleSizeChange: function (val) {
       console.log(`当前显示${val}条`);
+      this.queryInfo.limit = val
+      this.getRoomList()
     },
     handleCurrentChange: function (val) {
       console.log(`当前第${val}页`);
+      this.queryInfo.start = val
+      this.getRoomList()
     }
   }
 };
