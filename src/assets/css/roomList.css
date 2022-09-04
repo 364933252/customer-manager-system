@@ -195,6 +195,8 @@
 }
 .live_img_box .live_share_box .live_share .live_share_img .share_img,
 .live_img_box .live_share_box .live_share1 .live_share_img .share_img {
+  width: 230px;
+  height: 185px;
   border-radius: 5px;
 }
 .live_img_box .live_share_box .live_share {

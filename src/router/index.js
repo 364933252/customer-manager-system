@@ -45,16 +45,16 @@ const routes = [
         name: 'clueList',
         component: () => import('../views/CustomerManage/clue/clueList')
       },
-      {
-        path: '/customerList',
-        name: 'customerList',
-        component: () => import('../views/CustomerManage/customer/customerList')
-      },
-      {
-        path: '/customerDetail',
-        name: 'customerDetail',
-        component: () => import('../views/CustomerManage/customer/customerDetail')
-      },
+      // {
+      //   path: '/customerList',
+      //   name: 'customerList',
+      //   component: () => import('../views/CustomerManage/customer/customerList')
+      // },
+      // {
+      //   path: '/customerDetail',
+      //   name: 'customerDetail',
+      //   component: () => import('../views/CustomerManage/customer/customerDetail')
+      // },
       {
         path: '/memberList',
         name: 'memberList',
@@ -117,6 +117,11 @@ const routes = [
         path: '/editRoom/:id',
         name: 'editRoom',
         component: () => import('../views/LiveManage/RoomManage/RoomList/EditRoom')
+      },
+      {
+        path: '/customerList',
+        name: 'customerList',
+        component: () => import('../views/LiveManage/RoomManage/CustomerList')
       }
     ]
   },

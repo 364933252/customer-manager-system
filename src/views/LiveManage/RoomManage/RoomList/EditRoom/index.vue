@@ -298,7 +298,7 @@
                   align-items: center;
                 "
               >
-                <el-button type="primary" @click="editLiveRoom">立即创建</el-button>
+                <el-button type="primary" @click="editLiveRoom">立即修改</el-button>
                 <el-button>取消</el-button>
               </div>
             </el-form-item>
@@ -351,6 +351,7 @@
           CloseLike: '1',
           CloseKf: '0'
         },
+        roomId: '',
         editRoomFormRules: {
           Name: [
             { required: true, message: '请输入直播间标题!', tigger: 'blur' }
@@ -395,6 +396,7 @@
     created() {},
     mounted() {
       console.log(this.$route.params.id);
+      this.roomId = this.$route.params.id
       this.getRoomDetail(this.$route.params.id)
     },
     methods: {
@@ -442,10 +444,14 @@
         const { data: res1 } = await uploadImg(res.data, formData);
         this.editRoomForm.CoverImg = res1.media_id
       },
-      // 创建直播间
+      // 修改直播间
       editLiveRoom: async function () {
         this.editRoomForm.id = Number(this.$route.params.id)
-        const { data: res } = await editRomm(this.editRoomForm);
+        const params = {
+          Entry: this.editRoomForm
+        }
+        const { data: res } = await editRomm(params);
+        this.getRoomDetail(this.roomId)
         console.log(this.editRoomForm);
       },
       // 删除上传图片

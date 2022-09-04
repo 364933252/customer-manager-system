@@ -31,6 +31,12 @@ export default {
                         name: 'roomList'
                     },
                     {
+                        path: '/customerList',
+                        label: '客户列表',
+                        icon: 's-custom',
+                        name: 'customerList'
+                    },
+                    {
                         path: '/goodsList',
                         label: '商品库',
                         icon: 's-custom',

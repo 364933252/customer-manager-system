@@ -117,7 +117,7 @@
                     <div class="share_desc_info">好友邀请你参与直播:</div>
                     <div class="live_share_img">
                       <img
-                        src="../../../../../assets/images/share.png"
+                        :src="shareImgSrc"
                         class="share_img"
                         alt=""
                         srcset=""
@@ -350,6 +350,7 @@ export default {
         CloseLike: '1',
         CloseKf: '0'
       },
+      shareImgSrc: require('../../../../../assets/images/share.png'),
       addRoomFormRules: {
         Name: [
           { required: true, message: '请输入直播间标题!', tigger: 'blur' }
@@ -435,7 +436,7 @@ export default {
                 Entry: this.addRoomForm
             }
             const { data: res } = await addLiveRoom(params)
-            // this.$refs.addRoomFormRef.resetFields()
+            this.$refs.addRoomFormRef.resetFields()
             console.log(res, '创建直播间');
         })
     },
