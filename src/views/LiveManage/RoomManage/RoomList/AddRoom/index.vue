@@ -8,23 +8,23 @@
       </div>
       <div>
         <el-form
-          ref="editRoomFormRef"
-          :model="editRoomForm"
+          ref="addRoomFormRef"
+          :model="addRoomForm"
           label-position="left"
           label-width="110px"
-          :rules="editRoomFormRules"
+          :rules="addRoomFormRules"
         >
           <el-row :gutter="10">
             <el-col :span="12">
               <el-form-item label="直播类型" class="form_item">
-                <el-radio-group v-model="editRoomForm.Type">
+                <el-radio-group v-model="addRoomForm.Type">
                   <el-radio label="0">手机直播</el-radio>
                   <el-radio label="1">推流设备直播</el-radio>
                 </el-radio-group>
               </el-form-item>
               <el-form-item label="直播间标题" class="form_item" prop="Name">
                 <el-input
-                  v-model="editRoomForm.Name"
+                  v-model="addRoomForm.Name"
                   placeholder="填写本次直播的标题"
                   maxlength="17"
                   show-word-limit
@@ -35,7 +35,7 @@
                 <el-col :span="8">
                   <el-form-item prop="StartTime">
                     <el-date-picker
-                      v-model="editRoomForm.StartTime"
+                      v-model="addRoomForm.StartTime"
                       type="datetime"
                       placeholder="选择开播时间"
                       value-format="yyyy-MM-dd HH:mm:ss"
@@ -47,7 +47,7 @@
                 <el-col :span="11">
                   <el-form-item prop="EndTime">
                     <el-date-picker
-                      v-model="editRoomForm.EndTime"
+                      v-model="addRoomForm.EndTime"
                       type="datetime"
                       placeholder="选择结束时间"
                       value-format="yyyy-MM-dd HH:mm:ss"
@@ -62,7 +62,7 @@
                 class="form_item"
               >
                 <el-input
-                  v-model="editRoomForm.AnchorName"
+                  v-model="addRoomForm.AnchorName"
                   placeholder="填写本次直播的主播昵称"
                   maxlength="15"
                   show-word-limit
@@ -76,20 +76,20 @@
                 class="form_item"
               >
                 <el-input
-                  v-model="editRoomForm.AnchorWechat"
+                  v-model="addRoomForm.AnchorWechat"
                   placeholder="请输入主播微信账号"
                   clearable
                 ></el-input>
               </el-form-item>
               <el-form-item label="主播副号" class="form_item" prop="SubAnchorWechat">
                 <el-input
-                  v-model="editRoomForm.SubAnchorWechat"
+                  v-model="addRoomForm.SubAnchorWechat"
                   placeholder="请输入主播副号微信账号"
                   clearable
                 ></el-input>
               </el-form-item>
               <el-form-item label="官方收录" class="form_item">
-                <el-radio-group v-model="editRoomForm.IsFeedsPublic">
+                <el-radio-group v-model="addRoomForm.IsFeedsPublic">
                   <el-radio label="1">开启</el-radio>
                   <el-radio label="0">关闭</el-radio>
                 </el-radio-group>
@@ -263,7 +263,7 @@
                     <el-checkbox
                       true-label="1"
                       false-label="0"
-                      v-model="editRoomForm.CloseComment"
+                      v-model="addRoomForm.CloseComment"
                       >评论
                     </el-checkbox>
                   </el-form-item>
@@ -271,7 +271,7 @@
                     <el-checkbox
                       true-label="1"
                       false-label="0"
-                      v-model="editRoomForm.CloseLike"
+                      v-model="addRoomForm.CloseLike"
                       >点赞</el-checkbox
                     >
                   </el-form-item>
@@ -282,7 +282,7 @@
                     <el-checkbox
                       true-label="1"
                       false-label="0"
-                      v-model="editRoomForm.CloseKf"
+                      v-model="addRoomForm.CloseKf"
                       >客服</el-checkbox
                     >
                   </el-form-item>
@@ -298,7 +298,7 @@
                 align-items: center;
               "
             >
-              <el-button type="primary" @click="editLiveRoom">立即创建</el-button>
+              <el-button type="primary" @click="addLiveRoom">立即创建</el-button>
               <el-button>取消</el-button>
             </div>
           </el-form-item>
@@ -309,32 +309,32 @@
 </template>
 
 <script>
-// import { getUploadImgUrl, uploadImg, editLiveRoom } from '@/api/liveManage/roomedit/roomedit';
+import { getUploadImgUrl, uploadImg, addLiveRoom } from '@/api/liveManage/roomAdd/roomAdd';
 export default {
   data() {
     var ShareImgValidate = (rule, value, callback) => {
-        if (this.editRoomForm.ShareImg === '' || this.editRoomForm.ShareImg === undefined) {
+        if (this.addRoomForm.ShareImg === '' || this.addRoomForm.ShareImg === undefined) {
             callback(new Error('请上传分享卡片封面'))
         }else {
             callback()
         }
     }
     var FeedsImgValidate = (rule, value, callback) => {
-        if (this.editRoomForm.FeedsImg === '' || this.editRoomForm.ShareImg === undefined) {
+        if (this.addRoomForm.FeedsImg === '' || this.addRoomForm.ShareImg === undefined) {
             callback(new Error('请上传直播卡片封面'))
         }else {
             callback()
         }
     }
     var CoverImgValidate = (rule, value, callback) => {
-        if (this.editRoomForm.CoverImg === '' || this.editRoomForm.ShareImg === undefined) {
+        if (this.addRoomForm.CoverImg === '' || this.addRoomForm.ShareImg === undefined) {
             callback(new Error('请上传直播间背景墙'))
         }else {
             callback()
         }
     }
     return {
-      editRoomForm: {
+      addRoomForm: {
         Type: '0',
         Name: '',
         StartTime: '',
@@ -350,7 +350,7 @@ export default {
         CloseLike: '1',
         CloseKf: '0'
       },
-      editRoomFormRules: {
+      addRoomFormRules: {
         Name: [
           { required: true, message: '请输入直播间标题!', tigger: 'blur' }
         ],
@@ -395,8 +395,8 @@ export default {
   methods: {
     // 获取直播开始/结束时间
     // getTime: function (e) {
-    //   this.editRoomForm.StartTime = e[0];
-    //   this.editRoomForm.EndTime = e[1];
+    //   this.addRoomForm.StartTime = e[0];
+    //   this.addRoomForm.EndTime = e[1];
     // },
     // 上传直播间所需图片
     uploadLiveShareImg: async function (e) {
@@ -405,8 +405,8 @@ export default {
       const { data: res } = await getUploadImgUrl();
       const { data: res1 } = await uploadImg(res.data, formData);
       console.log(res1, '111222111');
-      this.editRoomForm.ShareImg = res1.media_id
-      console.log(this.editRoomForm, '456456465');
+      this.addRoomForm.ShareImg = res1.media_id
+      console.log(this.addRoomForm, '456456465');
     },
     // 上传直播间所需图片
     uploadLiveImg: async function (e) {
@@ -415,7 +415,7 @@ export default {
       const { data: res } = await getUploadImgUrl();
       console.log(res, '上传路径');
       const { data: res1 } = await uploadImg(res.data, formData);
-      this.editRoomForm.FeedsImg = res1.media_id
+      this.addRoomForm.FeedsImg = res1.media_id
     },
     // 上传直播间所需图片
     uploadLiveCoverImg: async function (e) {
@@ -424,46 +424,46 @@ export default {
       const { data: res } = await getUploadImgUrl();
       console.log(res, '上传路径');
       const { data: res1 } = await uploadImg(res.data, formData);
-      this.editRoomForm.CoverImg = res1.media_id
+      this.addRoomForm.CoverImg = res1.media_id
     },
     // 创建直播间
-    editLiveRoom: function () {
-        console.log(this.editRoomForm);
-        this.$refs.editRoomFormRef.validate(async valid => {
+    addLiveRoom: function () {
+        console.log(this.addRoomForm);
+        this.$refs.addRoomFormRef.validate(async valid => {
             if (!valid) return false
             const params = {
-                Entry: this.editRoomForm
+                Entry: this.addRoomForm
             }
-            const { data: res } = await editLiveRoom(params)
-            // this.$refs.editRoomFormRef.resetFields()
+            const { data: res } = await addLiveRoom(params)
+            // this.$refs.addRoomFormRef.resetFields()
             console.log(res, '创建直播间');
         })
     },
     // 删除上传图片
     handleShareRemove(file, fileList) {
       console.log(file, fileList);
-      this.editRoomForm.ShareImg = ''
+      this.addRoomForm.ShareImg = ''
     },
     handleFeedsRemove(file, fileList) {
       console.log(file, fileList);
-      this.editRoomForm.FeedsImg = ''
+      this.addRoomForm.FeedsImg = ''
     },
     handleCoverRemove(file, fileList) {
       console.log(file, fileList);
-      this.editRoomForm.CoverImg = ''
+      this.addRoomForm.CoverImg = ''
     },
     //
     handlePreview(file) {
       console.log(file);
     },
     handleShareChange(file, fileList) {
-    //   this.editRoomForm.ShareImg = file;
+    //   this.addRoomForm.ShareImg = file;
     },
     handleLiveChange(file, fileList) {
-    //   this.editRoomForm.FeedsImg = file;
+    //   this.addRoomForm.FeedsImg = file;
     },
     handleLiveCoverChange(file, fileList) {
-    //   this.editRoomForm.CoverImg = file;
+    //   this.addRoomForm.CoverImg = file;
     }
   }
 };
