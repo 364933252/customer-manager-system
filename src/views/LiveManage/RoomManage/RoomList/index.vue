@@ -76,11 +76,11 @@
                       ></el-switch>
                     </div>
                   </div> -->
-                  <div class="action">
+                  <!-- <div class="action">
                     <span style="margin-right: 5px">是否评论:</span>
                     <div class="switch_box">
                       <el-popover placement="top" trigger="click" width="160" @hide="hidePopver">
-                        <p>这是一段内容这是一段内容确定删除吗？</p>
+                        <p>此操作将开启/关闭直播间评论功能，确定继续？</p>
                         <div style="text-align: right; margin: 0">
                           <el-button size="mini" type="text" @click="isNoEditRoom">取消</el-button>
                           <el-button type="primary" size="mini" @click="editRoom(item)">确定</el-button>
@@ -91,7 +91,7 @@
                           slot="reference"></el-switch>
                       </el-popover>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- <div class="action">
                     <span style="margin-right: 5px">是否分享:</span>
                     <div class="switch_box">
@@ -107,11 +107,11 @@
                       ></el-switch>
                     </div>
                   </div> -->
-                  <div class="action">
+                  <!-- <div class="action">
                     <span style="margin-right: 5px">是否点赞:</span>
                     <div class="switch_box">
                       <el-popover placement="top" trigger="click" width="160" @hide="hidePopver">
-                        <p>这是一段内容这是一段内容确定删除吗？</p>
+                        <p>此操作将开启/关闭直播间点赞功能，确定继续？</p>
                         <div style="text-align: right; margin: 0">
                           <el-button size="mini" type="text" @click="isNoEditRoom">取消</el-button>
                           <el-button type="primary" size="mini" @click="editRoom(item)">确定</el-button>
@@ -126,7 +126,7 @@
                     <span style="margin-right: 5px">是否客服:</span>
                     <div class="switch_box">
                       <el-popover placement="top" trigger="click" width="160" @hide="hidePopver">
-                        <p>这是一段内容这是一段内容确定删除吗？</p>
+                        <p>此操作将开启/关闭直播间客服功能，确定继续？</p>
                         <div style="text-align: right; margin: 0">
                           <el-button size="mini" type="text" @click="isNoEditRoom">取消</el-button>
                           <el-button type="primary" size="mini" @click="editRoom(item)">确定</el-button>
@@ -136,7 +136,7 @@
                           inactive-text="否"></el-switch>
                       </el-popover>
                     </div>
-                  </div>
+                  </div> -->
                   <!-- <div class="action">
                     <span style="margin-right: 5px">是否回放:</span>
                     <div class="switch_box">
@@ -173,6 +173,9 @@
                     </el-tooltip>
                     <el-tooltip content="删除" class="item" effect="dark" placement="top">
                       <el-button type="danger" @click="deleteRoom(item.roomid)" icon="el-icon-delete" circle size="mini"></el-button>
+                    </el-tooltip>
+                    <el-tooltip content="控制台" class="item" effect="dark" placement="top">
+                      <el-button type="info" @click="navToControlPanel(item.roomid)" icon="el-icon-setting" circle size="mini"></el-button>
                     </el-tooltip>
                   </div>
                 </div>
@@ -298,6 +301,10 @@ export default {
       }
       const { data: res} = await deleteRoom(params)
       this.getRoomList()
+    },
+    // 跳转至直播间控制面板
+    navToControlPanel: function (id) {
+      this.$router.push(`/roomControlPanel/${id}`)
     },
     // 取消关闭评论
     isNoEditRoom: function () {

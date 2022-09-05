@@ -142,7 +142,7 @@
                         display: flex;
                         align-items: center;
                         font-size: 12px;
-                        padding: 10px 0;
+                        padding: 20px 0;
 
                         .item_label {
                             color: rgb(105, 102, 102);
@@ -176,7 +176,7 @@
                     }
 
                     .action_btns {
-                        margin-top: 10px;
+                        margin-top: 30px;
                         display: flex;
                         justify-content: center;
                     }
@@ -259,6 +259,7 @@
         .live_share {
             margin-left: 10px;
         }
+
         .live_share1 {
             width: 150px;
             height: 140px;
@@ -295,6 +296,7 @@
         height: 500px;
         background: url('../images/live_cover.png') no-repeat top center;
         background-size: 100% 100%;
+
         .cover_bottom_box {
             position: absolute;
             bottom: 15px;
@@ -303,6 +305,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+
             .live_comment_box {
                 display: flex;
                 width: 100%;
@@ -312,12 +315,14 @@
                 color: rgb(255 255 255 / 50%);
                 background: rgba(0, 0, 0, .6);
             }
+
             .live_care_box {
                 display: flex;
                 padding: 6px;
                 margin: 0 5px;
                 border-radius: 50%;
                 background: rgba(0, 0, 0, .6);
+
                 .care_img {
                     width: 20px;
                     height: 20px;
@@ -329,17 +334,112 @@
 
     .live_cover_info_box {
         width: 59%;
+
         .cover_info_box {
             margin: 0 15px;
+
             .info_title {
                 font-weight: bold;
                 font-size: 16px;
                 margin-bottom: 10px;
             }
+
             .info_desc {
                 font-size: 14px;
                 color: rgb(0 0 0 / 50%);
                 margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+// 直播间控制台
+.room_control_panel_box {
+    .room_info_box {
+        .room_info {
+            display: flex;
+            align-items: center;
+
+            .room_info_img {
+                width: 200px;
+                height: 160px;
+                border-radius: 20px;
+
+                .info_img {
+                    width: 200px;
+                    height: 160px;
+                    border-radius: 20px;
+                }
+            }
+
+            .room_info_box {
+                padding: 0 20px;
+
+                // border: 1px solid #000;
+                // height: 160px;
+                .room_title {
+                    font-size: 24px;
+                    font-weight: bold;
+                    padding-bottom: 15px;
+                }
+
+                .room_info_item {
+                    padding: 5px 0;
+                    color: rgb(134, 129, 129);
+                }
+
+            }
+        }
+    }
+    .room_control_panel {
+        margin-top: 20px;
+        .room_control_item {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            .control_item {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .control_title {
+                    font-weight: bold;
+                    padding-bottom: 5px;
+                }
+                .control_desc {
+                    font-size: 12px;
+                    padding: 5px 0;
+                    color: rgb(100, 98, 98);
+                }
+            }
+        }
+    }
+    .room_control_assistant {
+        .assistant_list_box {
+            .assistant_item {
+                display: flex;
+                // justify-content: space-between;
+                align-items: center;
+                .assistant_item_img {
+                    display: flex;
+                    .item_img_box {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 10px;
+                    }
+                }
+                .assistant_item_info_box {
+                    margin-left: 10px;
+                    .assistant_item_name {
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+                    .assistant_item_wechat {
+                        font-size: 14px;
+                        padding: 5px 0;
+                        color: rgb(104, 102, 102);
+                    }
+                }
             }
         }
     }

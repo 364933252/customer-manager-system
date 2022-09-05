@@ -119,6 +119,11 @@ const routes = [
         component: () => import('../views/LiveManage/RoomManage/RoomList/EditRoom')
       },
       {
+        path: '/roomControlPanel/:id',
+        name: 'roomControlPanel',
+        component: () => import('../views/LiveManage/RoomManage/RoomList/RoomControlPanel')
+      },
+      {
         path: '/customerList',
         name: 'customerList',
         component: () => import('../views/LiveManage/RoomManage/CustomerList')

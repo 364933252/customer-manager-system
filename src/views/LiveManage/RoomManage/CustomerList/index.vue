@@ -16,7 +16,7 @@
             <el-table :data="customerList" border :height="windowHeight - 20 + 'px'"
                 :header-row-class-name="setTableHeaderClass" stripe highlight-current-row style="width: 100%">
                 <el-table-column type="selection"> </el-table-column>
-                <el-table-column type="index"></el-table-column>
+                <el-table-column type="index" label="序号" width="60"></el-table-column>
                 <el-table-column prop="Name" label="姓名" width="80"> </el-table-column>
                 <el-table-column prop="Sex" label="性别" width="60">
                     <template slot-scope="{ row }">
