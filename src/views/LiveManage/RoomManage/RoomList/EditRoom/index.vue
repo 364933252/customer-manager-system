@@ -90,8 +90,8 @@
                 </el-form-item>
                 <el-form-item label="官方收录" class="form_item">
                   <el-radio-group v-model="editRoomForm.IsFeedsPublic">
-                    <el-radio :label="1">开启</el-radio>
-                    <el-radio :label="0">关闭</el-radio>
+                    <el-radio label="1">开启</el-radio>
+                    <el-radio label="0">关闭</el-radio>
                   </el-radio-group>
                 </el-form-item>
               </el-col>
@@ -261,16 +261,16 @@
                     </div>
                     <el-form-item label-width="0" style="margin-left: 15px">
                       <el-checkbox
-                        :true-label="1"
-                        :false-label="0"
+                        true-label="0"
+                        false-label="1"
                         v-model="editRoomForm.CloseComment"
                         >评论
                       </el-checkbox>
                     </el-form-item>
                     <el-form-item label-width="0" style="margin-left: 15px">
                       <el-checkbox
-                        :true-label="1"
-                        :false-label="0"
+                        true-label="0"
+                        false-label="1"
                         v-model="editRoomForm.CloseLike"
                         >点赞</el-checkbox
                       >
@@ -280,8 +280,8 @@
                     </div>
                     <el-form-item label-width="0" style="margin-left: 15px">
                       <el-checkbox
-                        :true-label="1"
-                        :false-label="0"
+                        true-label="0"
+                        false-label="1"
                         v-model="editRoomForm.CloseKf"
                         >客服</el-checkbox
                       >

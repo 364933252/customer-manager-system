@@ -40,7 +40,21 @@ export default {
                         path: '/goodsList',
                         label: '商品库',
                         icon: 's-custom',
-                        name: 'goodsList'
+                        name: 'goodsList',
+                        children: [
+                            {
+                                path: '/noInStorage',
+                                label: '未入库',
+                                icon: 's-custom',
+                                name: 'noInStorage'
+                            },
+                            {
+                                path: '/inStorage',
+                                label: '已入库',
+                                icon: 's-custom',
+                                name: 'inStorage'
+                            }
+                        ]
                     },
                     {
                         path: '/anchorList',

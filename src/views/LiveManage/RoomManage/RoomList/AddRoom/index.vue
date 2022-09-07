@@ -261,16 +261,16 @@
                   </div>
                   <el-form-item label-width="0" style="margin-left: 15px">
                     <el-checkbox
-                      true-label="1"
-                      false-label="0"
+                      true-label="0"
+                      false-label="1"
                       v-model="addRoomForm.CloseComment"
                       >评论
                     </el-checkbox>
                   </el-form-item>
                   <el-form-item label-width="0" style="margin-left: 15px">
                     <el-checkbox
-                      true-label="1"
-                      false-label="0"
+                      true-label="0"
+                      false-label="1"
                       v-model="addRoomForm.CloseLike"
                       >点赞</el-checkbox
                     >
@@ -280,8 +280,8 @@
                   </div>
                   <el-form-item label-width="0" style="margin-left: 15px">
                     <el-checkbox
-                      true-label="1"
-                      false-label="0"
+                      true-label="0"
+                      false-label="1"
                       v-model="addRoomForm.CloseKf"
                       >客服</el-checkbox
                     >
@@ -346,8 +346,8 @@ export default {
         ShareImg: '',
         FeedsImg: '',
         CoverImg: '',
-        CloseComment: '1',
-        CloseLike: '1',
+        CloseComment: '0',
+        CloseLike: '0',
         CloseKf: '0'
       },
       shareImgSrc: require('../../../../../assets/images/share.png'),

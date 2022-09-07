@@ -127,6 +127,16 @@ const routes = [
         path: '/customerList',
         name: 'customerList',
         component: () => import('../views/LiveManage/RoomManage/CustomerList')
+      },
+      {
+        path: '/noInStorage',
+        name: 'noInStorage',
+        component: () => import('../views/LiveManage/RoomManage/GoodsLibrary/NoInStorage')
+      },
+      {
+        path: '/inStorage',
+        name: 'inStorage',
+        component: () => import('../views/LiveManage/RoomManage/GoodsLibrary/InStorage')
       }
     ]
   },

@@ -47,8 +47,8 @@
                                                             <div class="control_desc">开启后，所有观众无法在直播间发表评论。</div>
                                                         </div>
                                                         <div class="control_item_right">
-                                                            <el-switch v-model="roomContorlForm.banComment" active-value="1"
-                                                                inactive-value="0" active-color="#13ce66"
+                                                            <el-switch v-model="roomContorlForm.banComment" active-value="0"
+                                                                inactive-value="1" active-color="#13ce66"
                                                                 inactive-color="#ff4949" @change="isBanComment">
                                                             </el-switch>
                                                         </div>
@@ -65,8 +65,8 @@
                                                             <div class="control_desc">开启后，观众可在直播结束页面查看本场直播回放。</div>
                                                         </div>
                                                         <div>
-                                                            <el-switch v-model="roomContorlForm.closeReplay" active-value="1"
-                                                                inactive-value="0" active-color="#13ce66"
+                                                            <el-switch v-model="roomContorlForm.closeReplay" active-value="0"
+                                                                inactive-value="1" active-color="#13ce66"
                                                                 inactive-color="#ff4949" @change="isCloseReplay">
                                                             </el-switch>
                                                         </div>
@@ -86,8 +86,8 @@
                                                             <div class="control_desc">直播前请核对有足够多的客服人员，以保证客服效果。</div>
                                                         </div>
                                                         <div>
-                                                            <el-switch v-model="roomContorlForm.closeKf" active-value="1"
-                                                                inactive-value="0" active-color="#13ce66"
+                                                            <el-switch v-model="roomContorlForm.closeKf" active-value="0"
+                                                                inactive-value="1" active-color="#13ce66"
                                                                 inactive-color="#ff4949" @change="isCloseKf">
                                                             </el-switch>
                                                         </div>
@@ -146,6 +146,9 @@
                                                 </el-button>
                                                 <el-button @click="resetroomContorlForm">重置</el-button>
                                             </el-form-item>
+                                            <el-form-item>
+                                                <span style="color: rgb(104, 102, 102);">还可以添加{{10 - Number(assistantCount)}}个直播间小助手</span>
+                                            </el-form-item>
                                         </el-form>
                                         <el-button slot="reference" style="float: right; padding: 3px 0" type="text">
                                             添加小助手</el-button>
@@ -153,7 +156,7 @@
                                 </div>
                                 <div class="assistant_list_box">
                                     <el-row :gutter="20">
-                                        <el-col :span="6">
+                                        <el-col :span="6" v-for="item in assistantList" :key="item.id">
                                             <el-card shadow="hover">
                                                 <div class="assistant_item">
                                                     <div class="assistant_item_img">
@@ -210,9 +213,9 @@ export default {
             activeName: 'first',
             roomContorlForm: {
                 roomId: '',
-                banComment: '',
-                closeKf: '',
-                closeReplay: '',
+                banComment: '0',
+                closeKf: '0',
+                closeReplay: '0',
                 user: {
                     username: '',
                     nickname: ''
@@ -236,13 +239,16 @@ export default {
                 username: [
                     { required: true, message: '填写副号的微信号', trigger: 'blur' }
                 ]
-            }
+            },
+            assistantList: [],
+            assistantCount: ''
         }
     },
     mounted() {
         this.roomContorlForm.roomId = this.$route.params.id
         this.subAnchorForm.roomId = this.$route.params.id
         this.getRoomDetail(this.$route.params.id)
+        this.searchRoomAssistant()
     },
     methods: {
         // 获取直播间详情
@@ -254,6 +260,9 @@ export default {
             }
             const { data: res } = await getRoomDetail(params)
             this.roomInfo = res.data
+            this.roomContorlForm.banComment = res.data.BanComment
+            this.roomContorlForm.closeKf = res.data.CloseKf
+            this.roomContorlForm.closeReplay = res.data.CloseReplay
             console.log(res, '直播间详情');
         },
         // 重置直播小助手表单
@@ -265,7 +274,7 @@ export default {
             const params = {
                 Entry: this.roomContorlForm
             }
-            const { data: res} = await submitRoomAssistant()
+            const { data: res} = await submitRoomAssistant(params)
             document.body.click()
             this.getRoomDetail(this.roomContorlForm.roomId)
         },
@@ -297,7 +306,10 @@ export default {
                 }
             }
             const { data: res} = await searchRoomAssistant(params)
-            this.getRoomDetail(this.roomContorlForm.roomId)
+            this.assistantList = res.data.list
+            this.assistantCount = res.data.count
+            console.log(res, '直播助手');
+            // this.getRoomDetail(this.roomContorlForm.roomId)
         },
         // 添加主播副号弹窗
         addSubAnchor: function () {
@@ -326,12 +338,13 @@ export default {
             const params = {
                 Entry: this.subAnchorForm
             }
-            const { data: res } = await eidtSubAnchorForm(params) 
+            const { data: res } = await eidtSubAnchorForm(params)
+            this.getRoomDetail(this.roomContorlForm.roomId) 
             this.subAnchorDialogVisible = false
         },
         // 删除主播副号
         removeSubAnchor: async function () {
-            const confirmResult = await this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            const confirmResult = await this.$confirm('此操作将删除主播副号, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
