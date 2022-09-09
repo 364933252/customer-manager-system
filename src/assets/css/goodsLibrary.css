@@ -12,3 +12,25 @@
 .goods_no_storage_box .goods_info_box .goods_name {
   margin-left: 10px;
 }
+.goods_no_storage_box .line_price_box .line_price {
+  text-decoration: line-through;
+  font-size: 12px;
+}
+.goods_no_storage_box .line_price_box .line_price .price {
+  font-weight: bold;
+  margin-left: 10px;
+}
+.goods_no_storage_box .edit_good_img_box {
+  display: flex;
+  align-items: center;
+}
+.goods_no_storage_box .edit_good_img_box .good_img_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.goods_no_storage_box .edit_good_img_box .good_img_box .good_img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
