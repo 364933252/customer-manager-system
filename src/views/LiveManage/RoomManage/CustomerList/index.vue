@@ -50,7 +50,7 @@
                 </el-table-column>
                 <el-table-column prop="Remark" label="备注">
                 </el-table-column>
-                <el-table-column width="80">
+                <el-table-column width="100">
                     <template slot-scope="{ row }">
                         <!-- <el-tooltip effect="dark" content="查看客户详情" placement="top">
                 <el-button
@@ -70,6 +70,10 @@
                   @click="transferMember(row)"
                 ></el-button>
               </el-tooltip> -->
+                        <el-tooltip effect="dark" content="授权直播间" placement="top">
+                            <el-button type="success" circle icon="el-icon-s-operation" size="mini"
+                                @click="openAuthLive(row.Phone, row.RoomList)"></el-button>
+                        </el-tooltip>
                         <el-tooltip effect="dark" content="删除" placement="top">
                             <el-button type="danger" circle icon="el-icon-delete" size="mini"
                                 @click="transferMember(row)"></el-button>
@@ -82,7 +86,8 @@
                 layout="total, sizes, prev, pager, next, jumper" :total="400">
             </el-pagination>
         </el-card>
-        <el-dialog title="新增客户" :visible.sync="addCustomerDialogVisible" :close-on-click-modal="false" width="30%" @close="resetAddLiveCustomerFrom">
+        <el-dialog title="新增客户" :visible.sync="addCustomerDialogVisible" :close-on-click-modal="false" width="30%"
+            @close="resetAddLiveCustomerFrom">
             <el-form :model="addCustomerForm" :rules="addCustomerFormRules" ref="addCustomerFormRef" label-width="100px"
                 class="demo-ruleForm">
                 <el-form-item label="姓名:" prop="Name">
@@ -110,7 +115,8 @@
                     <el-input v-model="addCustomerForm.Home_address" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="生日:" prop="Birthday">
-                    <el-date-picker v-model="addCustomerForm.Birthday" value-format="yyyy-MM-dd" type="date" placeholder="选择日期">
+                    <el-date-picker v-model="addCustomerForm.Birthday" value-format="yyyy-MM-dd" type="date"
+                        placeholder="选择日期">
                     </el-date-picker>
                 </el-form-item>
                 <el-form-item label="备注:" prop="Remark">
@@ -122,13 +128,26 @@
                 <el-button type="primary" @click="addLiveCustomer">确 定</el-button>
             </span>
         </el-dialog>
+        <!-- 直播间授权列表 -->
+        <el-dialog title="直播间列表" :visible.sync="authLiveDialog" width="36%" @close="resetLiveList">
+            <el-transfer v-model="Entry.RoomId" :titles="['直播间列表', '已授权直播间']" @right-check-change="authLiveRightchange" @change="selectData"
+                :button-texts="['删除', '添加']" :data="liveList"></el-transfer>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="authLiveDialog = false">取 消</el-button>
+                <el-button type="warning" @click="customerUnBindLiveRoom">解绑直播间</el-button>
+                <el-button type="primary" @click="customerBindLiveRoom">绑定直播间</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
   
-  <script>
+<script>
 import scrollBar from '@/components/common/scrollBar';
 import { mapState, mapMutations } from 'vuex';
-import { getLiveCustomerList, addLiveCustomer } from '@/api/liveManage/customerList/customerList'
+import { getLiveCustomerList, addLiveCustomer, customerBindLiveRoom, customerUnBindLiveRoom } from '@/api/liveManage/customerList/customerList'
+import {
+    getRoomList
+} from '@/api/liveManage/roomList/roomList';
 export default {
     components: {
         scrollBar
@@ -160,14 +179,21 @@ export default {
                     { required: true, message: '请输入客户姓名！', trigger: 'blur' }
                 ],
                 Phone: [
-                { required: true, message: '请输入客户手机号！', trigger: 'blur' }
+                    { required: true, message: '请输入客户手机号！', trigger: 'blur' }
                 ],
                 Email: [
                     { required: true, message: '请输入邮箱地址！', trigger: 'blur' },
                     { type: 'email', message: '请输入正确的邮箱地址！', trigger: ['blur', 'change'] }
                 ]
             },
-            addCustomerDialogVisible: false
+            addCustomerDialogVisible: false,
+            authLiveDialog: false,
+            liveList: [],
+            Entry: {
+                Phone: '',
+                RoomId: []
+            },
+            unBindLiveList: []
         };
     },
     computed: {
@@ -193,12 +219,82 @@ export default {
             const params = {
                 Entry: this.addCustomerForm
             }
-            const {data: res } = await addLiveCustomer(params)
+            const { data: res } = await addLiveCustomer(params)
             this.addCustomerDialogVisible = false
         },
         // 关闭重置新增客户Form
         resetAddLiveCustomerFrom: function () {
             this.$refs.addCustomerFormRef.resetFields()
+        },
+        // 打开授权直播间列表
+        openAuthLive: async function (Phone, RoomList) {
+            this.Entry.Phone = Phone
+            this.Entry.RoomId = RoomList
+            const param = {
+                Entry: {
+                    start: 0,
+                    limit: 1000
+                }
+            };
+            const { data: res } = await getRoomList(param);
+            console.log(res);
+            const roomList = res.data.room_info.filter(item => {
+                return item.live_status === '直播中' && item.live_status === '未开始' && item.live_status === '暂停'
+            })
+            // roomList.forEach(item => {
+            //     this.liveList.push({
+            //         key: item.roomid,
+            //         label: item.name
+            //     })
+            // });
+            res.data.room_info.forEach(item => {
+                this.liveList.push({
+                    key: item.roomid,
+                    label: item.name
+                })
+            })
+            this.authLiveDialog = true
+        },
+        // 客户绑定直播间
+        customerBindLiveRoom: async function () {
+            const params = {
+                Entry: this.Entry
+            }
+            const { data: res } = await customerBindLiveRoom(params)
+            this.getLiveCustomerList()
+            this.authLiveDialog = false
+            console.log(res, '绑定直播间');
+        },
+        // 重置直播间授权列表
+        resetLiveList: function () {
+            this.liveList = [],
+            this.Entry.RoomId = []
+        },
+        // 选中解绑直播间
+        authLiveRightchange: function (e) {
+            this.unBindLiveList = e
+            console.log(e);
+        },
+        // 解绑直播间
+        customerUnBindLiveRoom: async function () {
+            console.log(this.unBindLiveList);
+            const params = {
+                Entry: {
+                    Phone: this.Entry.Phone,
+                    RoomId: this.unBindLiveList
+                }
+            }
+            const { data: res } = await customerUnBindLiveRoom(params)
+            this.getLiveCustomerList()
+            this.authLiveDialog = false
+        },
+        // 
+        selectData: function () {
+            // console.log(this.Entry.customerLive);
+        },
+        // 获取直播间列表
+        getRoomList: async function () {
+
         },
         handleSizeChange(val) {
             this.queryInfo.rows = val
@@ -220,18 +316,18 @@ export default {
 };
 </script>
   
-  <style scoped>
-  .el-dropdown-link {
-      cursor: pointer;
-      color: #409eff;
-  }
-  
-  .el-icon-arrow-down {
-      font-size: 12px;
-  }
-  
-  .el-table>>>.table_header th {
-      background: rgb(247, 247, 247);
-  }
-  </style>
+<style scoped>
+.el-dropdown-link {
+    cursor: pointer;
+    color: #409eff;
+}
+
+.el-icon-arrow-down {
+    font-size: 12px;
+}
+
+.el-table>>>.table_header th {
+    background: rgb(247, 247, 247);
+}
+</style>
   

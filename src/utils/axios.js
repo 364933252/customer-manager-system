@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "../config/config";
 import { Message } from 'element-ui';
 import router from '@/router'
-import { log } from "console";
+import {apiLoading, loadingShow, loadingHide} from './loading'
 
 // 配置axios请求跟地址
 // axios.defaults.baseURL = config.baseUrl
@@ -29,6 +29,7 @@ axios.interceptors.request.use(config => {
     config.headers['Content-Type'] = 'application/json'
     config.headers['appid'] = '1001'
     config.headers['appkey'] = '123456'
+    apiLoading ? loadingShow() : ''
     return config
 }, error => {
     return Promise.reject(error)
@@ -48,6 +49,7 @@ axios.interceptors.response.use(response => {
         message: msg,
         type: 'success'
     })
+    apiLoading ? loadingHide() : ''
     return response
 }, error => {
     return Promise.reject(new Error(error))

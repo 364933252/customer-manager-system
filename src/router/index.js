@@ -129,6 +129,11 @@ const routes = [
         component: () => import('../views/LiveManage/RoomManage/CustomerList')
       },
       {
+        path: '/distributorList',
+        name: 'distributorList',
+        component: () => import('../views/LiveManage/RoomManage/DistributorList')
+      },
+      {
         path: '/noInStorage',
         name: 'noInStorage',
         component: () => import('../views/LiveManage/RoomManage/GoodsLibrary/NoInStorage')
@@ -147,9 +152,18 @@ const routes = [
 ]
 
 
+
+
 const router = new VueRouter({
   mode: 'history',
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') return next()
+  const tokenStr = window.sessionStorage.getItem('AccessToken')
+  if(!tokenStr) return next('/login')
+  next()
 })
 
 export default router

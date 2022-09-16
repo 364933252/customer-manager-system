@@ -171,6 +171,8 @@ export default {
                 }
             }
             const { data: res } = await editGood(params)
+            this.getInStorageList()
+            this.editGoodFormDialogVisible = false
             console.log(res, '修改商品');
         },
         // 获取商品详情

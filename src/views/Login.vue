@@ -64,7 +64,7 @@ export default {
         },
         Entry: {
           Phone: '15689360191',
-          Password: '663872',
+          Password: '620927',
           LoginType: '901'
         }
       },

@@ -37,6 +37,12 @@ export default {
                         name: 'customerList'
                     },
                     {
+                        path: '/distributorList',
+                        label: '分销商列表',
+                        icon: 's-custom',
+                        name: 'distributorList'
+                    },
+                    {
                         path: '/goodsList',
                         label: '商品库',
                         icon: 's-custom',

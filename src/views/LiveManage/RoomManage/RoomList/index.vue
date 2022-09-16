@@ -18,13 +18,20 @@
                 </div>
                 <div class="room_info_box">
                   <div class="room_status_box">
-                    <span class="room_status" v-if="item.live_status === '101'">● 直播中</span>
+                    <span class="room_status" v-if="item.live_status === '直播中'">● 直播中</span>
+                    <span class="room_status1" v-if="item.live_status === '未开始'">● 未开始</span>
+                    <span class="room_status2" v-if="item.live_status === '已结束'">● 已结束</span>
+                    <span class="room_status3" v-if="item.live_status === '禁播'">● 禁播</span>
+                    <span class="room_status4" v-if="item.live_status === '暂停'">● 暂停</span>
+                    <span class="room_status5" v-if="item.live_status === '异常'">● 异常</span>
+                    <span class="room_status6" v-if="item.live_status === '已过期'">● 已过期</span>
+                    <!-- <span class="room_status" v-if="item.live_status === '101'">● 直播中</span>
                     <span class="room_status1" v-if="item.live_status === '102'">● 未开始</span>
                     <span class="room_status2" v-if="item.live_status === '103'">● 已结束</span>
                     <span class="room_status3" v-if="item.live_status === '104'">● 禁播</span>
                     <span class="room_status4" v-if="item.live_status === '105'">● 暂停</span>
                     <span class="room_status5" v-if="item.live_status === '106'">● 异常</span>
-                    <span class="room_status6" v-if="item.live_status === '107'">● 已过期</span>
+                    <span class="room_status6" v-if="item.live_status === '107'">● 已过期</span> -->
                   </div>
                   <div class="room_name_box">@2022丶价钱散人</div>
                 </div>
@@ -46,7 +53,7 @@
                     <span class="item_label">开播时间:</span>
                     <el-tooltip class="item" effect="light" :content="item.start_time | dateFilter" placement="top">
                       <span class="item_value">{{
-                          item.start_time | dateFilter
+                      item.start_time | dateFilter
                       }}</span>
                     </el-tooltip>
                   </div>
@@ -54,7 +61,7 @@
                     <span class="item_label">结束时间:</span>
                     <el-tooltip class="item" effect="light" :content="item.end_time | dateFilter" placement="top">
                       <span class="item_value">{{
-                          item.end_time | dateFilter
+                      item.end_time | dateFilter
                       }}</span>
                     </el-tooltip>
                   </div>
@@ -168,14 +175,21 @@
                     </div>
                   </div> -->
                   <div class="action_btns">
-                    <el-tooltip class="item" effect="dark" content="修改" placement="top">
-                      <el-button type="warning" icon="el-icon-edit" circle size="mini" @click="navToEditRoom(item.roomid)"></el-button>
+                    <el-tooltip class="item" effect="dark" content="修改直播间" placement="top">
+                      <el-button type="warning" icon="el-icon-edit" circle size="mini"
+                        @click="navToEditRoom(item.roomid)"></el-button>
                     </el-tooltip>
-                    <el-tooltip content="删除" class="item" effect="dark" placement="top">
-                      <el-button type="danger" @click="deleteRoom(item.roomid)" icon="el-icon-delete" circle size="mini"></el-button>
+                    <el-tooltip content="删除直播间" class="item" effect="dark" placement="top">
+                      <el-button type="danger" @click="deleteRoom(item.roomid)" icon="el-icon-delete" circle
+                        size="mini"></el-button>
                     </el-tooltip>
-                    <el-tooltip content="控制台" class="item" effect="dark" placement="top">
-                      <el-button type="info" @click="navToControlPanel(item.roomid)" icon="el-icon-setting" circle size="mini"></el-button>
+                    <el-tooltip content="直播间控制台" class="item" effect="dark" placement="top">
+                      <el-button type="info" @click="navToControlPanel(item.roomid)" icon="el-icon-setting" circle
+                        size="mini"></el-button>
+                    </el-tooltip>
+                    <el-tooltip effect="dark" content="直播间绑定/解绑用户" placement="top">
+                      <el-button type="success" circle icon="el-icon-s-operation" size="mini"
+                        @click="openAuthLCustomer(item.roomid, item.name, item.PhoneList)"></el-button>
                     </el-tooltip>
                   </div>
                 </div>
@@ -191,6 +205,16 @@
         </el-pagination>
       </div>
     </el-card>
+    <!-- 直播间授权列表 -->
+    <el-dialog :title="authLiveTitle+'直播间授权'" :visible.sync="authCustomerDialog" width="36%" @close="resetCustomerList">
+      <el-transfer v-model="params.Entry.Phone" :titles="['客户列表', '已授权客户']"  @right-check-change="authCustomerLiveRightChange" @change="selectData"
+        :button-texts="['删除', '添加']" :data="customerList"></el-transfer>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="authCustomerDialog = false">取 消</el-button>
+        <el-button type="warning" @click="liveRoomUnBindCustomer">解绑绑直播间</el-button>
+        <el-button type="primary" @click="liveRoomBindCustomer">绑定直播间</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -200,8 +224,11 @@ import scrollBar from '@/components/common/scrollBar.vue';
 import {
   getRoomList,
   editRomm,
-  deleteRoom
+  deleteRoom,
+  liveRoomBindCustomer,
+  liveRoomUnBindCustomer
 } from '@/api/liveManage/roomList/roomList';
+import { getLiveCustomerList } from '@/api/liveManage/customerList/customerList'
 import moment from 'moment';
 export default {
   components: {
@@ -217,7 +244,17 @@ export default {
       roomList: [],
       isNoSay: '',
       isCommentVisible: false,
-      visible: false
+      visible: false,
+      authCustomerDialog: false,
+      params: {
+        Entry: {
+          Phone: [],
+          RoomId: ''
+        }
+      },
+      customerList: [],
+      authLiveTitle: '',
+      unBindCustomerList: []
     };
   },
   computed: {
@@ -290,16 +327,16 @@ export default {
           id: Number(roomid)
         }
       }
-      const confirmResult  = await this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      const confirmResult = await this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
+        cancelButtonText: '取消',
+        type: 'warning'
       }).catch(err => err)
       if (confirmResult !== 'confirm') {
         this.getRoomList()
         return this.$message.info('已取消删除！')
       }
-      const { data: res} = await deleteRoom(params)
+      const { data: res } = await deleteRoom(params)
       this.getRoomList()
     },
     // 跳转至直播间控制面板
@@ -317,6 +354,64 @@ export default {
     // 跳转至修改直播间页面
     navToEditRoom: function (roomid) {
       this.$router.push(`/editRoom/${roomid}`)
+    },
+    // 打开授权客户列表
+    openAuthLCustomer: async function (roomid, name, phoneList) {
+      this.authLiveTitle = name
+      this.params.Entry.RoomId = roomid
+      this.params.Entry.Phone = phoneList
+      const params = {
+        Entry: {
+          Query: '',
+          page: 1,
+          rows: 1000,
+          Type: '',
+          Sort: '',
+          State: ''
+        }
+      }
+      const { data: res } = await getLiveCustomerList(params)
+      res.data.forEach(item => {
+        this.customerList.push({
+          key: item.Phone,
+          label: item.Name
+        })
+      })
+      console.log(res);
+      this.authCustomerDialog = true
+    },
+    // 重置授权客户列表
+    resetCustomerList: function () {
+      this.customerList = []
+      this.params.Entry.Phone = []
+    },
+    // 直播间绑定客户
+    liveRoomBindCustomer: async function () {
+      const { data: res } = await liveRoomBindCustomer(this.params)
+      this.getRoomList()
+      this.authCustomerDialog = false
+      console.log(res, '直播间绑定客户');
+    },
+    selectData: function (e) {
+      console.log(e);
+    },
+    // 选择解绑用户列表
+    authCustomerLiveRightChange: function (e) {
+      this.unBindCustomerList = e
+    },
+    // 解绑
+    liveRoomUnBindCustomer: async function () {
+      console.log(this.unBindCustomerList, '123');
+      const params = {
+        Entry: {
+          Phone: this.unBindCustomerList,
+          RoomId: this.params.Entry.RoomId
+        }
+      }
+      const { data: res } = await liveRoomUnBindCustomer(params)
+      this.getRoomList()
+      this.authCustomerDialog = false
+      console.log(res, '111111111');
     },
     handleSizeChange: function (val) {
       console.log(`当前显示${val}条`);

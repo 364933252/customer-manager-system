@@ -58,7 +58,7 @@
             <el-form :model="addGoodForm" :rules="addGoodFormRules" ref="addGoodFormRef" label-width="100px"
                 class="demo-ruleForm">
                 <el-form-item label="商品图片" prop="CoverImgUrl">
-                    <el-upload class="upload-demo" action="action" list-type="picture" :http-request="uploadGoodImg"
+                    <el-upload class="upload-demo" ref="addGoodUploadRef" action="action" list-type="picture" :http-request="uploadGoodImg"
                         :multiple="false" :limit="1" :on-preview="handlePreview" :on-remove="handleGoodImgRemove"
                         :on-change="handleGoodImgChange">
                         <el-button size="small" type="primary">点击上传</el-button>
@@ -348,6 +348,7 @@ export default {
                     Entry: this.addGoodForm
                 }
                 const { data: res } = await addGood(params)
+                this.getNoInStorageList()
                 this.addGoodFormDialogVisible = false
                 console.log(res, '添加商品');
             })
@@ -428,6 +429,7 @@ export default {
         // 重置新增商品表单
         resetGoodForm: function () {
             this.$refs.addGoodFormRef.resetFields()
+            this.$refs.addGoodUploadRef.clearFiles()
         },
         // 重置修改商品表单
         resetEidtGoodForm: function () {
@@ -436,12 +438,13 @@ export default {
         // 删除上传图片
         handleGoodImgRemove(file, fileList) {
             console.log(file, fileList);
-            this.addRoomForm.ShareImg = ''
+            this.addGoodForm.CoverImgUrl = ''
         },
         handlePreview(file) {
             console.log(file);
         },
         handleGoodImgChange(file, fileList) {
+            console.log(file, fileList);
             //   this.addRoomForm.FeedsImg = file;
         },
         handleSizeChange(val) {

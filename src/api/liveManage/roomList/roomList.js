@@ -30,3 +30,25 @@ export const deleteRoom = (params) => {
         }
     })
 }
+
+// 直播间绑定客户
+export const liveRoomBindCustomer = (params) => {
+    return request({
+        url: '/api/business/BroadcastLooker/CreateBroadcastLooker',
+        method: 'POST',
+        data: {
+            ...params
+        }
+    })
+}
+
+// 直播间解绑客户
+export const liveRoomUnBindCustomer = (params) => {
+    return request({
+        url: '/api/business/BroadcastLooker/DeleteBroadcastLooker',
+        method: 'POST',
+        data: {
+            ...params
+        }
+    })
+}

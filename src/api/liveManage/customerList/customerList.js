@@ -21,3 +21,25 @@ export const addLiveCustomer = (params) => {
         }
     })
 }
+
+// 客户绑定直播间
+export const customerBindLiveRoom = (params) => {
+    return request({
+        url: '/api/business/BroadcastLooker/CreateLookerBroadcast',
+        method: 'POST',
+        data: {
+            ...params
+        }
+    })
+}
+
+// 客户解绑直播间
+export const customerUnBindLiveRoom = (params) => {
+    return request({
+        url: '/api/business/BroadcastLooker/DeleteLookerBroadcast',
+        method: 'POST',
+        data: {
+            ...params
+        }
+    })
+}
