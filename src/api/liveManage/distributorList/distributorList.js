@@ -12,7 +12,7 @@ export const getDistributorList = (params) => {
 }
 
 // 新增分销商
-export const addDistributorList = (params) => {
+export const addDistributor = (params) => {
     return request({
         url: '/api/business/Distribution/CreateDistribution',
         method: 'POST',
@@ -23,7 +23,7 @@ export const addDistributorList = (params) => {
 }
 
 // 编辑分销商
-export const editDistributorList = (params) => {
+export const editDistributor = (params) => {
     return request({
         url: '/api/business/Distribution/EditDistribution',
         method: 'POST',
@@ -34,7 +34,7 @@ export const editDistributorList = (params) => {
 }
 
 // 关闭分销商
-export const closeDistributor = (parmas) => {
+export const closeDistributor = (params) => {
     return request({
         url: '/api/business/Distribution/CloseDistribution',
         method: 'POST',

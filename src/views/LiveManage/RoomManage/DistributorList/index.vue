@@ -16,8 +16,22 @@
                 <el-table-column prop="RebateValue" label="分润比例">
                 </el-table-column>
                 <el-table-column prop="State" label="客户状态">
+                    <template slot-scope="{ row }">
+                        <el-switch style="display: block" v-model="row.State" :active-value="1" :inactive-value="0"
+                            active-color="#13ce66" inactive-color="#ff4949" active-text="开启" inactive-text="关闭"
+                            @change="editDistributorState(row.ConsumerId, row.State)">
+                        </el-switch>
+                    </template>
                 </el-table-column>
                 <el-table-column prop="Remark" label="备注">
+                </el-table-column>
+                <el-table-column label="操作">
+                    <template slot-scope="{ row }">
+                        <el-tooltip effect="dark" content="修改" placement="top">
+                            <el-button type="warning" circle icon="el-icon-edit" size="mini"
+                                @click="openEditDistributor(row)"></el-button>
+                        </el-tooltip>
+                    </template>
                 </el-table-column>
             </el-table>
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
@@ -36,8 +50,7 @@
                 </el-form-item>
                 <el-form-item label="分润方式" prop="RebateType">
                     <el-select v-model="distributorForm.RebateType" placeholder="请选择分润方式">
-                        <el-option label="区域一" value="shanghai"></el-option>
-                        <el-option label="区域二" value="beijing"></el-option>
+                        <el-option label="自定义" value="1"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="分润比例" prop="RebateValue">
@@ -46,16 +59,17 @@
                 <el-form-item label="客户备注" prop="Remark">
                     <el-input v-model="distributorForm.Remark" placeholder="请输入客户备注"></el-input>
                 </el-form-item>
-                <el-form-item label="客户状态" prop="State">
+                <el-form-item label="客户状态" prop="State" v-if="isEditDistributorState === '1'">
                     <el-radio-group v-model="distributorForm.State">
-                        <el-radio label="线上品牌商赞助"></el-radio>
-                        <el-radio label="线下场地免费"></el-radio>
+                        <el-radio :label="1">开启</el-radio>
+                        <el-radio :label="0">关闭</el-radio>
                     </el-radio-group>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="distributorDialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="distributorDialogVisible = false">确 定</el-button>
+                <el-button type="primary" @click="addDistributor" v-if="isEditDistributorState === '1'">确 定</el-button>
+                <el-button type="primary" @click="editDistributor" v-if="isEditDistributorState === '0'">修 改</el-button>
             </span>
         </el-dialog>
     </div>
@@ -63,7 +77,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { getDistributorList, addDistributorList, editDistributorList, closeDistributor } from '@/api/liveManage/distributorList/distributorList'
+import { getDistributorList, addDistributor, editDistributor, closeDistributor } from '@/api/liveManage/distributorList/distributorList'
 export default {
     data() {
         return {
@@ -79,6 +93,7 @@ export default {
             distributorTableData: [],
             distributorDialogTitle: '',
             distributorDialogVisible: false,
+            isEditDistributorState: '',
             distributorForm: {},
             distributorFormRules: {
                 ConsumerId: [
@@ -96,7 +111,8 @@ export default {
                 State: [
                     { required: true, message: '请选择客户状态', trigger: 'change' }
                 ]
-            }
+            },
+            distributorState: ''
         }
     },
     computed: {
@@ -113,7 +129,7 @@ export default {
             const params = {
                 Entry: this.queryInfo.Entry
             }
-            const {data: res } = await getDistributorList(this.queryInfo)
+            const { data: res } = await getDistributorList(this.queryInfo)
             this.distributorTableData = res.data
             // this.queryInfo.total = 
             console.log(res, '分销商列表');
@@ -121,10 +137,66 @@ export default {
         // 打开新建分销商Dialog
         openDistributorDialog: function () {
             this.distributorDialogTitle = '新增分销商'
+            this.isEditDistributorState = '1'
             this.distributorDialogVisible = true
         },
+        // 新建分销商账号
+        addDistributor: function () {
+            this.$refs.distributorFormRef.validate(async valid => {
+                if (!valid) return false
+                const params = {
+                    Entry: this.distributorForm
+                }
+                const { data: res } = await addDistributor(params)
+                this.getDistributorList()
+                this.distributorDialogVisible = false
+                console.log(res);
+            })
+        },
+        // 修改分销商状态
+        editDistributorState: async function (ConsumerId, State) {
+            const confirmResult = await this.$confirm('此操作将开启/关闭分销商账号,确定继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).catch(err => err)
+            if (confirmResult !== 'confirm') {
+                this.getDistributorList()
+                return this.$message.info('已取消修改！')
+            }
+            const params = {
+                Entry: {
+                    Id: ConsumerId,
+                    State: State
+                }
+            }
+            const { data: res } = await closeDistributor(params)
+            console.log(res, '修改装填');
+        },
+        // 打开修改分销商账号Dialog
+        openEditDistributor: function (distributor) {
+            this.distributorForm = distributor
+            this.distributorDialogTitle = '修改分销商'
+            this.isEditDistributorState = '0'
+            this.distributorDialogVisible = true
+        },
+        // 修改分销商账号
+        editDistributor: function () {
+            this.$refs.distributorFormRef.validate(async valid => {
+                if (!valid) return false
+                const params = {
+                    Entry: this.distributorForm
+                }
+                const { data: res } = await editDistributor(params)
+                this.getDistributorList()
+                this.distributorDialogVisible = false
+                console.log(res);
+            })
+        },
         // 重置新增/修改分销商From表单
-        resetDistirbutorForm: function () { },
+        resetDistirbutorForm: function () {
+            this.$refs.distributorFormRef.resetFields()
+        },
         handleSizeChange(val) {
             this.queryInfo.Entry.rows = val
             // console.log(`每页 ${val} 条`);
