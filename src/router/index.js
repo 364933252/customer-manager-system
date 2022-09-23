@@ -142,6 +142,11 @@ const routes = [
         path: '/inStorage',
         name: 'inStorage',
         component: () => import('../views/LiveManage/RoomManage/GoodsLibrary/InStorage')
+      },
+      {
+        path: '/orderList',
+        name: 'orderList',
+        component: () => import('../views/LiveManage/RoomManage/OrderList')
       }
     ]
   },

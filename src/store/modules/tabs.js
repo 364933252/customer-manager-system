@@ -21,87 +21,93 @@ export default {
             {
                 path: '/liveManage',
                 label: '直播管理',
-                icon: 's-custom',
+                icon: 's-grid',
                 name: 'liveManage',
                 children: [
                     {
                         path: '/roomList',
                         label: '直播间',
-                        icon: 's-custom',
+                        icon: 'menu',
                         name: 'roomList'
                     },
                     {
                         path: '/customerList',
                         label: '客户列表',
-                        icon: 's-custom',
+                        icon: 'menu',
                         name: 'customerList'
                     },
                     {
                         path: '/distributorList',
                         label: '分销商列表',
-                        icon: 's-custom',
+                        icon: 'menu',
                         name: 'distributorList'
                     },
                     {
                         path: '/goodsList',
                         label: '商品库',
-                        icon: 's-custom',
+                        icon: 'menu',
                         name: 'goodsList',
                         children: [
                             {
                                 path: '/noInStorage',
                                 label: '未入库',
-                                icon: 's-custom',
+                                icon: 'menu',
                                 name: 'noInStorage'
                             },
                             {
                                 path: '/inStorage',
                                 label: '已入库',
-                                icon: 's-custom',
+                                icon: 'menu',
                                 name: 'inStorage'
                             }
                         ]
                     },
                     {
+                        path: '/orderList',
+                        label: '订单列表',
+                        icon: 'menu',
+                        name: 'orderList'
+                    },
+                    {
                         path: '/anchorList',
                         label: '直播成员',
-                        icon: 's-custom',
+                        icon: 'menu',
                         name: 'anchorList' 
                     },
                     {
                         path: '/subscribeManage',
                         label: '订阅管理',
-                        icon: 's-custom',
+                        icon: 'menu',
                         name: 'subscribeManage' 
                     },
                     {
                         path: '/liveSet',
                         label: '直播设置',
-                        icon: 's-custom',
+                        icon: 's-operation',
                         name: 'liveSet' ,
                         children: [
                             {
                                 path: '/serviceManage',
                                 label: '客服管理',
-                                icon: '',
+                                icon: 'menu',
                                 name: 'serviceManage',
                             },
                             {
                                 path: '/serviceManage',
                                 label: '回访管理',
-                                icon: '',
+                                icon: 'menu',
                                 name: 'serviceManage',
                             },
                             {
                                 path: '/silentManage',
                                 label: '禁言管理',
-                                icon: '',
+                                icon: 'menu',
                                 name: 'silentManage',
                             },
                             {
                                 path: '/embodyManage',
                                 label: '收录管理',
-                                icon: '',
+                                icon: 'menu',
                                 name: 'embodyManage',
                             }
                         ]

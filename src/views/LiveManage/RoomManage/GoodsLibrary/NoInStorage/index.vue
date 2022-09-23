@@ -40,7 +40,7 @@
                 <template slot-scope="{row}">
                     <el-button type="text" v-if="queryInfo.status === '0' || queryInfo.status === '3'"
                         @click="submitAuditGood(row.goodsId)">提交审核</el-button>
-                    <el-button type="text" v-if="queryInfo.status === '1'" @click="repealAuditGood(row.goodsId)">撤销审核
+                    <el-button type="text" v-if="queryInfo.status === '1'" @click="repealAuditGood(row.AuditId, row.goodsId)">撤销审核
                     </el-button>
                     <el-button type="text" v-if="queryInfo.status === '0' || queryInfo.status === '3'"
                         @click="editOpenGoodForm(row.goodsId)">编辑</el-button>
@@ -110,9 +110,9 @@
                         </el-col>
                     </el-row>
                 </el-form-item>
-                <el-form-item label="商品路径" prop="Url">
+                <!-- <el-form-item label="商品路径" prop="Url">
                     <el-input v-model="addGoodForm.Url"></el-input>
-                </el-form-item>
+                </el-form-item> -->
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="addGoodFormDialogVisible = false">取 消</el-button>
@@ -182,9 +182,9 @@
                         </el-col>
                     </el-row>
                 </el-form-item>
-                <el-form-item label="商品路径" prop="url">
+                <!-- <el-form-item label="商品路径" prop="url">
                     <el-input v-model="editGoodForm.url"></el-input>
-                </el-form-item>
+                </el-form-item> -->
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editGoodFormDialogVisible = false">取 消</el-button>
@@ -368,6 +368,8 @@ export default {
                 }
             }
             const { data: res } = await editGood(params)
+            this.getNoInStorageList()
+            this.editGoodFormDialogVisible = false
             console.log(res, '修改商品');
         },
         // 获取商品详情
@@ -401,11 +403,28 @@ export default {
                 }
             }
             const { data: res } = await submitAuditGood(params)
+            this.getNoInStorageList()
             console.log(res, '商品审核');
         },
         // 撤销审核
-        repealAuditGood: function () {
-
+        repealAuditGood: async function (AuditId,goodsId) {
+            const confirmResult = await this.$confirm('此操作将撤销审核商品, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).catch(err => err)
+            if (confirmResult !== 'confirm') {
+                this.getNoInStorageList()
+                return this.$message.info('已撤销审核！')
+            }
+            const params = {
+                Entry: {
+                    auditId: AuditId,
+                    goodsId: goodsId
+                }
+            }
+            const { data: res } = await repealAuditGood(params)
+            this.getNoInStorageList()
         },
         // 删除商品
         deleteGood: async function (goodsId) {
