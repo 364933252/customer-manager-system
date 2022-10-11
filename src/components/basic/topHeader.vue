@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="header_right">
-        <div class="user_info">
+        <!-- <div class="user_info">
           <span style="font-weight: bold">设计师</span>
           <span style="margin: 5px">|</span>
           <span>韩梅梅</span>
@@ -35,9 +35,9 @@
             <el-dropdown-item>双皮奶</el-dropdown-item>
             <el-dropdown-item>蚵仔煎</el-dropdown-item>
           </el-dropdown-menu>
-        </el-dropdown>
+        </el-dropdown> -->
         <div class="remind_box">
-          <el-badge :value="15" class="item">
+          <!-- <el-badge :value="15" class="item">
             <el-dropdown trigger="click">
             <span class="el-dropdown-link">
               <i class="el-icon-bell" style="font-size: 20px;"></i>
@@ -53,7 +53,7 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          </el-badge>
+          </el-badge> -->
         </div>
       </div>
     </div>

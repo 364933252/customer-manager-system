@@ -74,16 +74,16 @@
                             <el-button type="success" circle icon="el-icon-s-operation" size="mini"
                                 @click="openAuthLive(row.Phone, row.RoomList)"></el-button>
                         </el-tooltip>
-                        <el-tooltip effect="dark" content="删除" placement="top">
+                        <!-- <el-tooltip effect="dark" content="删除" placement="top">
                             <el-button type="danger" circle icon="el-icon-delete" size="mini"
                                 @click="transferMember(row)"></el-button>
-                        </el-tooltip>
+                        </el-tooltip> -->
                     </template>
                 </el-table-column>
             </el-table>
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-                :current-page="queryInfo.page" :page-sizes="[100, 200, 300, 400]" :page-size="queryInfo.rows"
-                layout="total, sizes, prev, pager, next, jumper" :total="400">
+                :current-page="queryInfo.page" :page-sizes="[10, 20, 30, 40, 50]" :page-size="queryInfo.rows"
+                layout="sizes, prev, pager, next, jumper" :total="400">
             </el-pagination>
         </el-card>
         <el-dialog title="新增客户" :visible.sync="addCustomerDialogVisible" :close-on-click-modal="false" width="30%"

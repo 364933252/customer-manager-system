@@ -36,7 +36,7 @@
             </el-table>
             <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
                 :current-page="queryInfo.Entry.page" :page-sizes="[100, 200, 300, 400]"
-                :page-size="queryInfo.Entry.rows" layout="total, sizes, prev, pager, next, jumper"
+                :page-size="queryInfo.Entry.rows" layout="sizes, prev, pager, next, jumper"
                 :total="queryInfo.total">
             </el-pagination>
         </el-card>

@@ -6,7 +6,7 @@ export default {
             {
                 path: '/homePage',
                 label: '首页',
-                name: 'homePage',
+                name: 'welcome',
                 icon: 's-home'
             }
         ],
@@ -15,7 +15,7 @@ export default {
             {
                 path: '/homePage',
                 label: '首页',
-                name: 'homePage',
+                name: 'welcome',
                 icon: 's-home'
             },
             {
@@ -68,50 +68,50 @@ export default {
                         icon: 'menu',
                         name: 'orderList'
                     },
-                    {
-                        path: '/anchorList',
-                        label: '直播成员',
-                        icon: 'menu',
-                        name: 'anchorList' 
-                    },
-                    {
-                        path: '/subscribeManage',
-                        label: '订阅管理',
-                        icon: 'menu',
-                        name: 'subscribeManage' 
-                    },
-                    {
-                        path: '/liveSet',
-                        label: '直播设置',
-                        icon: 's-operation',
-                        name: 'liveSet' ,
-                        children: [
-                            {
-                                path: '/serviceManage',
-                                label: '客服管理',
-                                icon: 'menu',
-                                name: 'serviceManage',
-                            },
-                            {
-                                path: '/serviceManage',
-                                label: '回访管理',
-                                icon: 'menu',
-                                name: 'serviceManage',
-                            },
-                            {
-                                path: '/silentManage',
-                                label: '禁言管理',
-                                icon: 'menu',
-                                name: 'silentManage',
-                            },
-                            {
-                                path: '/embodyManage',
-                                label: '收录管理',
-                                icon: 'menu',
-                                name: 'embodyManage',
-                            }
-                        ]
-                    }
+                    // {
+                    //     path: '/anchorList',
+                    //     label: '直播成员',
+                    //     icon: 'menu',
+                    //     name: 'anchorList' 
+                    // },
+                    // {
+                    //     path: '/subscribeManage',
+                    //     label: '订阅管理',
+                    //     icon: 'menu',
+                    //     name: 'subscribeManage' 
+                    // },
+                    // {
+                    //     path: '/liveSet',
+                    //     label: '直播设置',
+                    //     icon: 's-operation',
+                    //     name: 'liveSet' ,
+                    //     children: [
+                    //         {
+                    //             path: '/serviceManage',
+                    //             label: '客服管理',
+                    //             icon: 'menu',
+                    //             name: 'serviceManage',
+                    //         },
+                    //         {
+                    //             path: '/serviceManage',
+                    //             label: '回访管理',
+                    //             icon: 'menu',
+                    //             name: 'serviceManage',
+                    //         },
+                    //         {
+                    //             path: '/silentManage',
+                    //             label: '禁言管理',
+                    //             icon: 'menu',
+                    //             name: 'silentManage',
+                    //         },
+                    //         {
+                    //             path: '/embodyManage',
+                    //             label: '收录管理',
+                    //             icon: 'menu',
+                    //             name: 'embodyManage',
+                    //         }
+                    //     ]
+                    // }
                 ]
             },
             // {

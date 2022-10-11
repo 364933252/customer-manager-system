@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="room_info_box">
                                     <div>
-                                        <div class="room_title">夏凉浮生半城雪</div>
+                                        <div class="room_title">{{roomInfo.Name}}</div>
                                         <div class="room_info_item">开播时间: {{ roomInfo.StartTime }} - {{ roomInfo.EndTime
                                         }}
                                         </div>

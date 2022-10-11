@@ -8,7 +8,7 @@
       :collapse="isCollapse"
       active-text-color="#fff"
     >
-        <h3 style="text-align: center;">{{isCollapse ? '墨辰' : '墨辰CRM系统'}}</h3>
+        <h3 style="text-align: center;">{{isCollapse ? '利中石' : '利中石LIVE系统'}}</h3>
       <el-menu-item
         :index="item.path"
         v-for="item in noChildren"
