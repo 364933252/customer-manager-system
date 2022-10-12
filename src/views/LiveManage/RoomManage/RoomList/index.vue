@@ -42,6 +42,10 @@
                 </div>
                 <div class="live_item_info">
                   <div class="info_item">
+                    <span class="item_label">房间编号:</span>
+                    <div class="item_value">{{ item.roomid }}</div>
+                  </div>
+                  <div class="info_item">
                     <span class="item_label">房间名称:</span>
                     <div class="item_value">{{ item.name }}</div>
                   </div>
@@ -327,7 +331,7 @@ export default {
           id: Number(roomid)
         }
       }
-      const confirmResult = await this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      const confirmResult = await this.$confirm(`此操作将永久删除${roomid}直播间, 是否继续?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'

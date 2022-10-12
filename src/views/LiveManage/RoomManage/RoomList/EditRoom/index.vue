@@ -11,8 +11,8 @@
             <el-col :span="12">
               <el-form-item label="直播类型" class="form_item">
                 <el-radio-group v-model="editRoomForm.Type">
-                  <el-radio :label="0">手机直播</el-radio>
-                  <el-radio :label="1">推流设备直播</el-radio>
+                  <el-radio label="0">手机直播</el-radio>
+                  <el-radio label="1">推流设备直播</el-radio>
                 </el-radio-group>
               </el-form-item>
               <el-form-item label="直播间标题" class="form_item" prop="Name">

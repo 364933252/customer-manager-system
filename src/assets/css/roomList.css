@@ -99,7 +99,7 @@
   display: flex;
   align-items: center;
   font-size: 12px;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 .room_live_list_box .room_live_list .room_live .room_live_item_info .live_item_info .info_item .item_label {
   color: #696666;

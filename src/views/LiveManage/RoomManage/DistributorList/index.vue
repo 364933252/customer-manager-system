@@ -41,8 +41,8 @@
             </el-pagination>
         </el-card>
         <!-- 新建分銷商 -->
-        <el-dialog :title="distributorDialogTitle" :visible.sync="distributorDialogVisible" width="30%"
-            @close="resetDistirbutorForm">
+        <el-dialog title="新建分销商" :visible.sync="distributorDialogVisible" width="30%"
+            @closed="resetDistirbutorForm">
             <el-form :model="distributorForm" :rules="distributorFormRules" ref="distributorFormRef" label-width="100px"
                 class="demo-ruleForm">
                 <el-form-item label="客户编号" prop="ConsumerId">
@@ -69,6 +69,38 @@
             <span slot="footer" class="dialog-footer">
                 <el-button @click="distributorDialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="addDistributor" v-if="isEditDistributorState === '1'">确 定</el-button>
+                <!-- <el-button type="primary" @click="editDistributor" v-if="isEditDistributorState === '0'">修 改</el-button> -->
+            </span>
+        </el-dialog>
+        <!-- 修改分銷商 -->
+        <el-dialog title="修改分销商" :visible.sync="editDistributorDialogVisible" width="30%"
+            @closed="resetEditDistirbutorForm">
+            <el-form :model="editDistributorForm" :rules="editDistributorFormRules" ref="editDistributorFormRef" label-width="100px"
+                class="demo-ruleForm">
+                <el-form-item label="客户ID" prop="Id">
+                    <el-input v-model="editDistributorForm.Id" disabled placeholder="请输入客户手机号"></el-input>
+                </el-form-item>
+                <el-form-item label="分润方式" prop="RebateType">
+                    <el-select v-model="editDistributorForm.RebateType" placeholder="请选择分润方式">
+                        <el-option label="自定义" value="1"></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="分润比例" prop="RebateValue">
+                    <el-input v-model="editDistributorForm.RebateValue" placeholder="请输入分润比例"></el-input>
+                </el-form-item>
+                <el-form-item label="客户备注" prop="Remark">
+                    <el-input v-model="editDistributorForm.Remark" placeholder="请输入客户备注"></el-input>
+                </el-form-item>
+                <!-- <el-form-item label="客户状态" prop="State" v-if="isEditDistributorState === '1'">
+                    <el-radio-group v-model="editDistributorForm.State">
+                        <el-radio :label="1">开启</el-radio>
+                        <el-radio :label="0">关闭</el-radio>
+                    </el-radio-group>
+                </el-form-item> -->
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="editDistributorDialogVisible = false">取 消</el-button>
+                <!-- <el-button type="primary" @click="addDistributor" v-if="isEditDistributorState === '1'">确 定</el-button> -->
                 <el-button type="primary" @click="editDistributor" v-if="isEditDistributorState === '0'">修 改</el-button>
             </span>
         </el-dialog>
@@ -93,10 +125,29 @@ export default {
             distributorTableData: [],
             distributorDialogTitle: '',
             distributorDialogVisible: false,
+            editDistributorDialogVisible: false,
             isEditDistributorState: '',
             distributorForm: {},
+            editDistributorForm: {},
             distributorFormRules: {
                 ConsumerId: [
+                    { required: true, message: '请输入客户手机号!', trigger: 'blur' }
+                ],
+                RebateType: [
+                    { required: true, message: '请选择分润方式!', trigger: 'change' }
+                ],
+                RebateValue: [
+                    { required: true, message: '请输入分润比例!', trigger: 'blur' }
+                ],
+                Remark: [
+                    { required: true, message: '请输入客户备注!', trigger: 'blur' }
+                ],
+                State: [
+                    { required: true, message: '请选择客户状态', trigger: 'change' }
+                ]
+            },
+            editDistributorFormRules: {
+                Id: [
                     { required: true, message: '请输入客户手机号!', trigger: 'blur' }
                 ],
                 RebateType: [
@@ -171,31 +222,37 @@ export default {
                 }
             }
             const { data: res } = await closeDistributor(params)
+            this.getDistributorList()
             console.log(res, '修改装填');
         },
         // 打开修改分销商账号Dialog
         openEditDistributor: function (distributor) {
-            this.distributorForm = distributor
+            this.editDistributorForm = distributor
             this.distributorDialogTitle = '修改分销商'
             this.isEditDistributorState = '0'
-            this.distributorDialogVisible = true
+            this.editDistributorDialogVisible = true
         },
         // 修改分销商账号
         editDistributor: function () {
-            this.$refs.distributorFormRef.validate(async valid => {
+            this.$refs.editDistributorFormRef.validate(async valid => {
                 if (!valid) return false
                 const params = {
-                    Entry: this.distributorForm
+                    Entry: this.editDistributorForm
                 }
                 const { data: res } = await editDistributor(params)
                 this.getDistributorList()
-                this.distributorDialogVisible = false
+                this.editDistributorDialogVisible = false
+                // this.distributorForm = {}
                 console.log(res);
             })
         },
-        // 重置新增/修改分销商From表单
+        // 重置新增分销商From表单
         resetDistirbutorForm: function () {
             this.$refs.distributorFormRef.resetFields()
+        },
+        // 重置修改分销商From表单
+        resetEditDistirbutorForm: function () {
+            this.$refs.editDistributorFormRef.resetFields()
         },
         handleSizeChange(val) {
             this.queryInfo.Entry.rows = val

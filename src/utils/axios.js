@@ -44,7 +44,10 @@ axios.interceptors.response.use(response => {
     const msg = response.data.msg
     console.log(status);
     if (status === 401) return router.push({ path: '/login' });
-    if (status !== 200) return Message({ message: msg, type: 'error' });
+    if (status !== 200) {
+        apiLoading ? loadingHide() : ''
+        return Message({ message: msg, type: 'error' });
+    }
     Message({
         message: msg,
         type: 'success'
